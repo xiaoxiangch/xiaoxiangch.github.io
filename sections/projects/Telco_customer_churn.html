@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telecom Customer Churn Prediction | Project Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        body {
+            padding-top: 56px;
+            background-color: #f8f9fa;
+            color: #333;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .navbar {
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-detail-container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 50px;
+            max-width: 900px;
+        }
+
+        h1.project-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .part-label {
+            text-align: center;
+            color: #6c757d;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            border-left: 5px solid #343a40;
+            padding-left: 15px;
+            margin-top: 30px;
+            margin-bottom: 14px;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        p {
+            line-height: 1.55;
+            margin-bottom: 12px;
+        }
+
+        ul,
+        ol {
+            margin-bottom: 14px;
+        }
+
+        /* offset anchors so headings clear the fixed nav + toc bar */
+        h3[id],
+        div[id],
+        section[id] {
+            scroll-margin-top: 120px;
+        }
+
+        .tech-tag {
+            margin-right: 5px;
+            margin-bottom: 10px;
+            padding: 8px 15px;
+            font-size: 0.9rem;
+        }
+
+        .btn-back {
+            transition: all 0.3s;
+        }
+
+        .btn-back:hover {
+            transform: translateX(-5px);
+        }
+
+        .lead-text {
+            font-size: 1.1rem;
+            line-height: 1.55;
+            color: #2c3e50;
+            font-weight: 400;
+            margin-top: 12px;
+        }
+
+        /* ── Sticky section nav ───────────────────────────── */
+        .toc-bar {
+            position: sticky;
+            top: 56px;
+            z-index: 1020;
+            background: rgba(255, 255, 255, 0.97);
+            border-bottom: 1px solid #e3e6ea;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+            padding: 8px 0;
+            margin-bottom: 25px;
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .toc-bar .toc-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .toc-bar a {
+            display: inline-block;
+            padding: 5px 12px;
+            margin-right: 4px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #495057;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .toc-bar a:hover {
+            background: #343a40;
+            color: #fff;
+        }
+
+        .toc-bar a.active {
+            background: #343a40;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .toc-bar .toc-sep {
+            display: inline-block;
+            width: 1px;
+            height: 18px;
+            background: #ced4da;
+            margin: 0 8px;
+            vertical-align: middle;
+        }
+
+        .toc-bar .toc-part {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            color: #adb5bd;
+            text-transform: uppercase;
+            margin-right: 4px;
+        }
+
+        /* ── Wide screens: TOC becomes a fixed left sidebar ─────────── */
+        @media (min-width: 992px) {
+            body {
+                padding-left: 220px;
+            }
+
+            .toc-bar {
+                position: fixed;
+                top: 56px;
+                left: 0;
+                bottom: 0;
+                width: 220px;
+                margin-bottom: 0;
+                padding: 20px 0;
+                overflow-x: hidden;
+                overflow-y: auto;
+                white-space: normal;
+                border-bottom: none;
+                border-right: 1px solid #e3e6ea;
+                box-shadow: 1px 0 4px rgba(0, 0, 0, 0.04);
+            }
+
+            .toc-bar .toc-inner {
+                max-width: none;
+                margin: 0;
+                padding: 0 14px;
+            }
+
+            .toc-bar a {
+                display: block;
+                margin: 0 0 2px;
+                padding: 7px 12px;
+                border-radius: 5px;
+                font-size: 0.88rem;
+            }
+
+            .toc-bar .toc-sep {
+                display: block;
+                width: auto;
+                height: 1px;
+                margin: 14px 12px 10px;
+            }
+
+            .toc-bar .toc-part {
+                display: block;
+                margin: 0 0 6px;
+                padding-left: 12px;
+            }
+
+            /* no sticky bar overhead any more — anchors only clear the navbar */
+            h3[id],
+            div[id],
+            section[id],
+            .finding-title,
+            .part-divider {
+                scroll-margin-top: 76px;
+            }
+        }
+
+        /* ── KPI cards ────────────────────────────────────── */
+        .kpi-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 25px 0 10px;
+        }
+
+        .kpi-card {
+            flex: 1;
+            min-width: 150px;
+            background: #f0f4f8;
+            border-radius: 8px;
+            border-top: 4px solid #343a40;
+            padding: 18px 15px;
+            text-align: center;
+        }
+
+        .kpi-card .kpi-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #2c3e50;
+            line-height: 1.2;
+        }
+
+        .kpi-card .kpi-label {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-top: 6px;
+        }
+
+        .kpi-card.danger {
+            border-top-color: #c0392b;
+        }
+
+        .kpi-card.danger .kpi-value {
+            color: #c0392b;
+        }
+
+        .kpi-card.good {
+            border-top-color: #3c8d5b;
+        }
+
+        .kpi-card.good .kpi-value {
+            color: #3c8d5b;
+        }
+
+        /* ── Findings ─────────────────────────────────────── */
+        .finding-title {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-top: 26px;
+            margin-bottom: 8px;
+            scroll-margin-top: 120px;
+        }
+
+        .finding-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            flex-shrink: 0;
+            background: #343a40;
+            color: #fff;
+            border-radius: 50%;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .finding-body {
+            line-height: 1.55;
+            color: #3a3f44;
+        }
+
+        ul.finding-body {
+            padding-left: 22px;
+            line-height: 1.55;
+        }
+
+        ul.finding-body li {
+            margin-bottom: 5px;
+        }
+
+        /* ── Figures ──────────────────────────────────────── */
+        .chart-figure {
+            text-align: center;
+            margin: 14px 0;
+        }
+
+        .chart-figure img {
+            width: 100%;
+            display: block;
+            margin: 0 auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .chart-figure img:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.15);
+        }
+
+        .chart-figure.narrow img {
+            max-width: 620px;
+        }
+
+        .chart-caption {
+            margin-top: 7px;
+            font-size: 0.85em;
+            line-height: 1.4;
+            color: #666;
+            font-style: italic;
+        }
+
+        .chart-pair {
+            display: flex;
+            gap: 22px;
+            margin: 14px 0;
+            flex-wrap: wrap;
+        }
+
+        .chart-pair .chart-figure {
+            flex: 1;
+            min-width: 300px;
+            margin: 0;
+        }
+
+        /* three figures in one row */
+        .chart-trio {
+            display: flex;
+            gap: 16px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .chart-trio .chart-figure {
+            flex: 1 1 0;
+            min-width: 210px;
+            margin: 0;
+        }
+
+        /* equal-height variant: figure and table match heights */
+        .chart-pair.pair-equal {
+            align-items: stretch;
+        }
+
+        /* both columns exactly half the row */
+        .chart-pair.pair-equal>* {
+            display: flex;
+            flex-direction: column;
+            flex: 1 1 0;
+            min-width: 280px;
+        }
+
+        .chart-pair.pair-equal .chart-figure img {
+            width: 100%;
+            height: auto;
+        }
+
+        .chart-pair.pair-equal .table-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            border: none;
+        }
+
+        .chart-pair.pair-equal .data-table {
+            border: 1px solid #ddd;
+        }
+
+        /* ── Collapsible detail blocks ────────────────────── */
+        details.more {
+            border: 1px solid #e3e6ea;
+            border-radius: 6px;
+            background: #fcfdfe;
+            margin: 18px 0;
+        }
+
+        details.more>summary {
+            cursor: pointer;
+            list-style: none;
+            padding: 11px 18px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #495057;
+            outline: none;
+            user-select: none;
+        }
+
+        details.more>summary::-webkit-details-marker {
+            display: none;
+        }
+
+        details.more>summary::before {
+            content: "\f105";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            display: inline-block;
+            width: 14px;
+            margin-right: 9px;
+            color: #868e96;
+            transition: transform 0.2s;
+        }
+
+        details.more[open]>summary::before {
+            transform: rotate(90deg);
+        }
+
+        details.more[open]>summary {
+            border-bottom: 1px solid #e3e6ea;
+        }
+
+        details.more .details-body {
+            padding: 16px 18px 4px;
+        }
+
+        details.more .details-body>*:first-child {
+            margin-top: 0;
+        }
+
+        details.more .table-container {
+            width: 100%;
+            margin-top: 0;
+        }
+
+        /* section-level collapsible: summary styled like an h3 */
+        details.more.section {
+            border: none;
+            background: transparent;
+            margin: 40px 0 20px;
+        }
+
+        details.more.section>summary {
+            border-left: 5px solid #343a40;
+            border-radius: 0;
+            padding: 2px 0 2px 15px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #212529;
+        }
+
+        details.more.section[open]>summary {
+            border-bottom: none;
+            margin-bottom: 8px;
+        }
+
+        details.more.section>summary::before {
+            font-size: 1rem;
+            vertical-align: middle;
+        }
+
+        details.more.section .details-body {
+            padding: 0;
+        }
+
+        /* ── Callout / note ───────────────────────────────── */
+        .note-box {
+            background: #fff8e6;
+            border-left: 4px solid #f0ad4e;
+            border-radius: 6px;
+            padding: 12px 18px;
+            margin: 14px 0;
+            font-size: 0.93rem;
+            line-height: 1.5;
+            color: #6b5a2e;
+        }
+
+        .insight-box {
+            background: #eef6ef;
+            border-left: 4px solid #3c8d5b;
+            border-radius: 6px;
+            padding: 12px 18px;
+            margin: 14px 0;
+            font-size: 0.93rem;
+            line-height: 1.5;
+            color: #2f5d43;
+        }
+
+        .takeaway-box {
+            background: #f0f4f8;
+            border-left: 5px solid #343a40;
+            border-radius: 6px;
+            padding: 20px 24px;
+            margin-top: 30px;
+        }
+
+        /* ── Data table ───────────────────────────────────── */
+        .table-container {
+            max-height: 320px;
+            overflow-y: auto;
+            overflow-x: auto;
+            margin: 20px auto;
+            width: 95%;
+            border: 1px solid #ddd;
+        }
+
+        .table-container.tall {
+            max-height: 420px;
+        }
+
+        .table-container.auto {
+            max-height: none;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 0.93rem;
+        }
+
+        .data-table thead th {
+            position: sticky;
+            top: 0;
+            background: #f5f5f5;
+            z-index: 1;
+        }
+
+        .data-table th,
+        .data-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        .data-table td.left {
+            text-align: left;
+        }
+
+        .data-table td.num {
+            font-variant-numeric: tabular-nums;
+        }
+
+        .data-table td.dim,
+        .data-table .dim {
+            color: #999;
+        }
+
+        /* taller rows, for tables sitting beside a figure */
+        .data-table.roomy th,
+        .data-table.roomy td {
+            padding: 16px 10px;
+        }
+
+        .data-table tbody tr.best-row {
+            background: #eef6ef;
+        }
+
+        .data-table tbody tr.best-row td {
+            font-weight: 600;
+        }
+
+        /* churn-rate heat cells */
+        .r5 {
+            background: #b2182b;
+            color: #fff;
+        }
+
+        .r4 {
+            background: #ef6548;
+            color: #fff;
+        }
+
+        .r3 {
+            background: #fc9272;
+        }
+
+        .r2 {
+            background: #fcbba1;
+        }
+
+        .r1 {
+            background: #fee0d2;
+        }
+
+        .r0 {
+            background: #f7f7f7;
+        }
+
+        /* confusion-matrix cells */
+        .cm-hit {
+            background: #eef6ef;
+            color: #2f5d43;
+            font-weight: 600;
+        }
+
+        .cm-miss {
+            background: #fdecea;
+            color: #a03228;
+            font-weight: 600;
+        }
+
+        .cm-waste {
+            background: #fff8e6;
+            color: #6b5a2e;
+        }
+
+        /* ── Part divider ─────────────────────────────────── */
+        .part-divider {
+            border-top: 3px solid #343a40;
+            margin: 45px 0 0;
+            padding-top: 26px;
+            scroll-margin-top: 120px;
+        }
+
+        .part-divider h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 6px;
+            color: #2c3e50;
+        }
+
+        .pipeline-list {
+            counter-reset: step;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .pipeline-list li {
+            position: relative;
+            padding-left: 45px;
+            margin-bottom: 14px;
+            line-height: 1.7;
+        }
+
+        .pipeline-list li::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 1px;
+            width: 30px;
+            height: 30px;
+            background: #f0f4f8;
+            border: 2px solid #343a40;
+            color: #2c3e50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .project-detail-container {
+                padding: 25px 18px;
+            }
+
+            .chart-pair {
+                gap: 15px;
+            }
+
+            h1.project-title {
+                font-size: 1.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../../index.html#home">Portfolio</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="../../index.html#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../index.html#projects">Projects</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ── Sticky section nav ────────────────────────────────── -->
+    <div class="toc-bar">
+        <div class="toc-inner">
+            <a href="#overview">Overview</a>
+            <a href="#data">The Data</a>
+            <span class="toc-sep"></span>
+            <span class="toc-part">Part 1 · EDA</span>
+            <a href="#target">Target Overview</a>
+            <a href="#univariate">Univariate</a>
+            <a href="#bivariate">Bivariate</a>
+            <a href="#multivariate">Multivariate</a>
+            <a href="#correlation">Correlation</a>
+            <a href="#p1-takeaways">Takeaways</a>
+            <span class="toc-sep"></span>
+            <span class="toc-part">Part 2 · Model</span>
+            <a href="#approach">Pipeline</a>
+            <a href="#benchmark">Benchmark</a>
+            <a href="#drivers">Drivers</a>
+            <a href="#calibration">Action</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-10 mx-auto project-detail-container">
+
+            <h1 class="project-title">Telecom Customer Churn Prediction</h1>
+            <p class="part-label">Part 1 — Exploratory Data Analysis &nbsp;·&nbsp; Part 2 — Predictive Modelling</p>
+
+            <div class="text-center mb-3">
+                <span class="badge badge-pill badge-dark tech-tag">Python</span>
+                <span class="badge badge-pill badge-success tech-tag">Pandas</span>
+                <span class="badge badge-pill badge-primary tech-tag">Matplotlib</span>
+                <span class="badge badge-pill badge-info tech-tag">Seaborn</span>
+                <span class="badge badge-pill badge-secondary tech-tag">SciPy</span>
+                <span class="badge badge-pill badge-warning tech-tag">scikit-learn</span>
+                <span class="badge badge-pill badge-danger tech-tag">XGBoost / LightGBM / CatBoost</span>
+                <span class="badge badge-pill badge-secondary tech-tag">imbalanced-learn</span>
+                <span class="badge badge-pill badge-dark tech-tag">Optuna</span>
+                <span class="badge badge-pill badge-primary tech-tag">SHAP</span>
+            </div>
+
+            <!-- ── Overview ──────────────────────────────────────────── -->
+            <h3 id="overview"><i class="fas fa-info-circle"></i> Overview</h3>
+            <p class="lead-text">
+                A telecom provider loses one in four customers. Two questions, in order:
+            </p>
+            <ol class="pipeline-list">
+                <li><strong>Who is churning, and what characterises them?</strong> An exploratory analysis of every
+                    feature against the <strong>26.6% baseline churn rate</strong>.</li>
+                <li><strong>Can we predict it before it happens?</strong> A predictive model, delivered as a risk list
+                    carrying a churn probability for each customer.</li>
+            </ol>
+
+            <div class="kpi-row">
+                <div class="kpi-card">
+                    <div class="kpi-value">7,032</div>
+                    <div class="kpi-label">customers analyzed</div>
+                </div>
+                <div class="kpi-card danger">
+                    <div class="kpi-value">26.6%</div>
+                    <div class="kpi-label">baseline churn rate</div>
+                </div>
+                <div class="kpi-card good">
+                    <div class="kpi-value">0.8437</div>
+                    <div class="kpi-label">best CV ROC-AUC (LightGBM)</div>
+                </div>
+            </div>
+
+            <!-- ── The Data ──────────────────────────────────────────── -->
+            <h3 id="data"><i class="fas fa-table"></i> The Data</h3>
+            <p>
+                IBM's Telco Churn dataset: <strong>7,032 rows × 21 columns</strong> — one row per customer, one binary
+                label, 19 predictors. Three cleaning steps were needed before any plotting:
+            </p>
+            <ul>
+                <li><strong>Type fix:</strong> <code>TotalCharges</code> was stored as text.
+                    <code>pd.to_numeric(errors='coerce')</code> exposed <strong>11 hidden missing values</strong> that
+                    <code>info()</code> had reported as complete.
+                </li>
+                <li><strong>Missing values:</strong> those 11 rows are 0.16% of the data, so they were dropped —
+                    7,043 → <strong>7,032 rows</strong>.</li>
+                <li><strong>Engineered features:</strong> <code>tenure_group</code> (12-month cohorts) and
+                    <code>num_services</code> (count of the 6 optional add-ons, a stickiness proxy).
+                </li>
+            </ul>
+            <p class="mb-2">The 21 columns fall into five groups:</p>
+            <div class="table-container auto">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Group</th>
+                            <th>#</th>
+                            <th>Columns</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Demographic</td>
+                            <td class="num">4</td>
+                            <td class="left">gender, SeniorCitizen, Partner, Dependents</td>
+                        </tr>
+                        <tr>
+                            <td>Account</td>
+                            <td class="num">4</td>
+                            <td class="left">tenure (0–72 months), Contract, PaperlessBilling, PaymentMethod</td>
+                        </tr>
+                        <tr>
+                            <td>Services</td>
+                            <td class="num">9</td>
+                            <td class="left">PhoneService, MultipleLines, InternetService + the 6 optional add-ons
+                                (OnlineSecurity, OnlineBackup, DeviceProtection, TechSupport, StreamingTV,
+                                StreamingMovies)</td>
+                        </tr>
+                        <tr>
+                            <td>Charges</td>
+                            <td class="num">2</td>
+                            <td class="left">MonthlyCharges, TotalCharges</td>
+                        </tr>
+                        <tr>
+                            <td>Target</td>
+                            <td class="num">1</td>
+                            <td class="left">Churn — whether the customer left</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ══════════════════════════════════════════════════════════ -->
+            <!-- ══                     P A R T   1                      ══ -->
+            <!-- ══════════════════════════════════════════════════════════ -->
+            <div class="part-divider" id="part1">
+                <h2>Part 1 — Exploratory Data Analysis</h2>
+                <p class="part-label">Target → Univariate → Bivariate → Multivariate → Correlation</p>
+            </div>
+
+            <!-- ── 0. Target overview ────────────────────────────────── -->
+            <h3 id="target"><i class="fas fa-bullseye"></i> Target Overview</h3>
+
+            <div class="chart-pair pair-equal">
+                <figure class="chart-figure">
+                    <img src="Telco_customer_churn/1_churn_distrubition.png" alt="Churn distribution">
+                    <figcaption class="chart-caption">Target class balance</figcaption>
+                </figure>
+                <div>
+                    <div class="table-container auto" style="margin:0; width:100%;">
+                        <table class="data-table roomy">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Stayed</th>
+                                    <th>Churned</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="left">Customers</td>
+                                    <td class="num">5,163</td>
+                                    <td class="num">1,869</td>
+                                </tr>
+                                <tr>
+                                    <td class="left">Share</td>
+                                    <td class="num r0">73.4%</td>
+                                    <td class="num r3">26.6%</td>
+                                </tr>
+                                <tr>
+                                    <td class="left">Ratio</td>
+                                    <td class="num">2.76</td>
+                                    <td class="num">1</td>
+                                </tr>
+                                <tr>
+                                    <td class="left">Total</td>
+                                    <td class="num" colspan="2"><strong>7,032</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <p class="finding-body">
+                The data is imbalanced, majority class is 'no churn', the baseline churn rate is <strong>26.6%</strong>.
+            </p>
+
+            <!-- ── 1. Univariate ─────────────────────────────────────── -->
+            <h3 id="univariate"><i class="fas fa-chart-bar"></i> 1 · Univariate Analysis</h3>
+            <p>
+                One column at a time — the numeric columns as distribution plus boxplot, the categorical ones as each
+                level's share of customers.
+            </p>
+
+            <figure class="chart-figure">
+                <img src="Telco_customer_churn/2_univariate_num.png"
+                    alt="Distributions and boxplots of tenure, MonthlyCharges and TotalCharges">
+                <figcaption class="chart-caption">The three numeric columns — histogram + KDE above, boxplot
+                    below</figcaption>
+            </figure>
+
+            <figure class="chart-figure">
+                <img src="Telco_customer_churn/3_univariate_cat.png"
+                    alt="Distribution of all 16 categorical variables with percentage labels">
+                <figcaption class="chart-caption">All 16 categorical columns — each level's share of customers
+                </figcaption>
+            </figure>
+
+            <ul class="finding-body">
+                <li><strong>tenure and MonthlyCharges are bimodal</strong> — two products, not one price curve. No
+                    outliers.</li>
+                <li><strong>55.1% are month-to-month</strong> — most of the base has no commitment.</li>
+                <li><strong>21.6% have no internet</strong> — one group, counted six times: it fills the "No internet
+                    service" level in all six add-on columns, and it is the $20 spike in MonthlyCharges.</li>
+                <li>Everything else is reasonably balanced.</li>
+            </ul>
+
+            <!-- ── 2. Bivariate ──────────────────────────────────────── -->
+            <h3 id="bivariate"><i class="fas fa-balance-scale"></i> 2 · Bivariate Analysis</h3>
+            <p>
+                Each feature against churn — first as raw counts, then as a <em>rate</em> against the 26.6% baseline.
+            </p>
+
+            <div class="finding-title">Categorical Analysis</div>
+
+            <figure class="chart-figure">
+                <img src="Telco_customer_churn/4_bivariate_cat.png"
+                    alt="Churn vs stay counts for every categorical feature">
+                <figcaption class="chart-caption">Stayed vs left as counts — shows which levels are too thin to draw
+                    conclusions from</figcaption>
+            </figure>
+
+            <figure class="chart-figure">
+                <img src="Telco_customer_churn/5_bivariate_cat_churn_rate.png"
+                    alt="Churn rate for every level of all 16 categorical features against the 26.6% baseline">
+                <figcaption class="chart-caption">The same 16 features as churn <em>rate</em> per level. Red dashed line
+                    = 26.6% baseline.</figcaption>
+            </figure>
+
+            <div class="table-container tall">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Group</th>
+                            <th>Feature</th>
+                            <th>Higher churn</th>
+                            <th>Lower churn</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="4">Demographic</td>
+                            <td>gender</td>
+                            <td class="r2">Female — 26.5%</td>
+                            <td class="r2">Male — 26.2%</td>
+                        </tr>
+                        <tr>
+                            <td>SeniorCitizen</td>
+                            <td class="r4">Senior — 41.7%</td>
+                            <td class="r1">Non-senior — 23.7%</td>
+                        </tr>
+                        <tr>
+                            <td>Partner</td>
+                            <td class="r3">No — 33.0%</td>
+                            <td class="r1">Yes — 19.7%</td>
+                        </tr>
+                        <tr>
+                            <td>Dependents</td>
+                            <td class="r2">No — 31.3%</td>
+                            <td class="r0">Yes — 15.5%</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3">Account</td>
+                            <td>Contract</td>
+                            <td class="r5">Month-to-month — 42.7%</td>
+                            <td class="r0">Two year — 2.8%</td>
+                        </tr>
+                        <tr>
+                            <td>PaymentMethod</td>
+                            <td class="r5">Electronic check — 45.3%</td>
+                            <td class="r0">Credit card — 15.2%</td>
+                        </tr>
+                        <tr>
+                            <td>PaperlessBilling</td>
+                            <td class="r3">Yes — 33.6%</td>
+                            <td class="r1">No — 16.3%</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="5">Services</td>
+                            <td>InternetService</td>
+                            <td class="r4">Fiber optic — 41.9%</td>
+                            <td class="r0">No — 7.4%</td>
+                        </tr>
+                        <tr>
+                            <td>OnlineSecurity</td>
+                            <td class="r4">No — 41.8%</td>
+                            <td class="r0">Yes — 14.6%</td>
+                        </tr>
+                        <tr>
+                            <td>TechSupport</td>
+                            <td class="r4">No — 41.6%</td>
+                            <td class="r0">Yes — 15.2%</td>
+                        </tr>
+                        <tr>
+                            <td>StreamingTV / Movies</td>
+                            <td class="r3">No — ~33.6%</td>
+                            <td class="r2">Yes — ~30.0%</td>
+                        </tr>
+                        <tr>
+                            <td>PhoneService / MultipleLines</td>
+                            <td class="r2">≈ baseline</td>
+                            <td class="r2">≈ baseline</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <ul class="finding-body">
+                <li><strong>Demographics shift churn, but mildly</strong> — seniors 41.7% vs 23.7%, no partner 33.0% vs
+                    19.7%, no dependents 31.3% vs 15.5%. Smaller households churn more, and none of it is actionable.
+                </li>
+                <li><strong>Contract is the strongest feature</strong> — 42.7% / 11.3% / 2.8%, a fifteen-fold spread
+                    from one column.</li>
+                <li><strong>Payment friction is next</strong> — electronic check stands alone at 45.3% (every other
+                    method sits at 15–19%), and paperless billing adds 33.6% vs 16.3%.</li>
+                <li><strong>Protective add-ons matter, streaming ones don't</strong> — ~40% without vs ~15–22% with;
+                    streaming moves churn 3–4 points.</li>
+                <li><strong>Fiber optic 41.9% vs DSL 19.0%</strong> — the premium product loses more customers.</li>
+                <li>Flat: gender, PhoneService, MultipleLines.</li>
+            </ul>
+
+            <div class="finding-title">Numerical Analysis</div>
+
+            <figure class="chart-figure">
+                <img src="Telco_customer_churn/6_bivariate_num_churn.png"
+                    alt="Distribution by churn above, mean churn rate against the same axis below, for the three numeric features">
+                <figcaption class="chart-caption">Top: distribution split by churn. Bottom: mean churn rate against the
+                    same axis, so peaks above can be read against turning points below.</figcaption>
+            </figure>
+
+            <div class="chart-trio">
+                <figure class="chart-figure">
+                    <img src="Telco_customer_churn/7_bivariate_num_tenure_bin.png"
+                        alt="Churn rate by 12-month tenure cohort">
+                    <figcaption class="chart-caption">tenure — 12-month cohorts</figcaption>
+                </figure>
+                <figure class="chart-figure">
+                    <img src="Telco_customer_churn/7_bivariate_num_MonthlyCharge_bin.png"
+                        alt="Churn rate by MonthlyCharges quintile">
+                    <figcaption class="chart-caption">MonthlyCharges — quintiles</figcaption>
+                </figure>
+                <figure class="chart-figure">
+                    <img src="Telco_customer_churn/7_bivariate_num_otalCharge_bin.png"
+                        alt="Churn rate by TotalCharges quintile">
+                    <figcaption class="chart-caption">TotalCharges — quintiles</figcaption>
+                </figure>
+            </div>
+
+            <ul class="finding-body">
+                <li><strong>Churner profile:</strong> low tenure, high MonthlyCharges, low TotalCharges — the last a
+                    symptom of leaving early, not a cause.</li>
+                <li><strong>tenure — monotone decline:</strong> 47.7% → 28.7% → 21.6% → 19.0% → 14.3% →
+                    <strong>6.6%</strong>, crossing baseline around month 18.
+                </li>
+                <li><strong>MonthlyCharges — rises, then turns back down:</strong> 9.0% → 24.9% → 29.8% →
+                    <strong>36.0%</strong> → 32.8%. The top quintile ($94+) churns <em>less</em> than the fourth.
+                </li>
+                <li><strong>TotalCharges — mirror image of tenure:</strong> <strong>46.0%</strong> → 28.7% → 20.7% →
+                    22.8% → 14.1%. The cheapest quintile is the newest.</li>
+            </ul>
+
+            <!-- ── 3. Multivariate ──────────────────────────────────── -->
+            <h3 id="multivariate"><i class="fas fa-th"></i> 3 · Multivariate Analysis</h3>
+            <p>Features in combination.</p>
+
+            <div class="finding-title">Demographic Analysis</div>
+
+            <div class="chart-pair">
+                <figure class="chart-figure">
+                    <img src="Telco_customer_churn/8_multivariate_demongraphic.png"
+                        alt="Customer counts by demographic subgroup">
+                    <figcaption class="chart-caption">Customer counts per subgroup</figcaption>
+                </figure>
+                <figure class="chart-figure">
+                    <img src="Telco_customer_churn/9_multivariate_demongraphic_churn_rate.png"
+                        alt="Churn rate by demographic subgroup with confidence intervals">
+                    <figcaption class="chart-caption">Churn rate per subgroup, with confidence intervals</figcaption>
+                </figure>
+            </div>
+
+            <figure class="chart-figure">
+                <img src="Telco_customer_churn/10_multivariate_demongraphic_heatmap.png"
+                    alt="Churn rate, share of all churners and subgroup size across senior x gender x partner x dependents">
+                <figcaption class="chart-caption">The same 16 subgroups as a heatmap trio — rate, share of all churners,
+                    and segment size</figcaption>
+            </figure>
+
+            <ul class="finding-body">
+                <li><strong>Rate ≠ volume.</strong> The worst cell (<strong>49.8%</strong>) holds 317 customers and
+                    <strong>8.5% of churners</strong>; its non-senior neighbours churn at 30–32% but hold
+                    <strong>2,719 customers and 45.4%</strong>.
+                </li>
+                <li><strong>Read the error bars first.</strong> The senior + has-dependents cells span 0–100% — they
+                    contain 3–5 customers.</li>
+                <li><strong>60.2% of churners have no partner and no dependents</strong> — the <code>No-No</code> column
+                    of the middle panel, added up: 23.0 + 22.4 + 8.5 + 6.3. And that group is already <strong>46.6% of
+                        all customers</strong> (1,338 + 1,381 + 317 + 244 = 3,280 of 7,032).</li>
+            </ul>
+
+            <div class="finding-title">Account Analysis</div>
+
+            <figure class="chart-figure">
+                <img src="Telco_customer_churn/11_multivariat_account_heatmap.png"
+                    alt="Churn rate, churner share and cell size across contract, paperless billing, payment method and tenure group for the first 24 months">
+                <figcaption class="chart-caption">First 24 months only: Contract × PaperlessBilling × PaymentMethod ×
+                    tenure cohort</figcaption>
+            </figure>
+
+            <ul class="finding-body">
+                <li><strong>The sharpest cell in Part 1:</strong> month-to-month + paperless + electronic check, months
+                    0–12 → <strong>67.8%, 701 customers, 25.4% of all churners</strong>. With months 13–24 (55.0%), one
+                    persona covers a third of all churn.</li>
+                <li><strong>Every two-year contract cell is 0.0%.</strong></li>
+            </ul>
+
+            <div class="finding-title">Service Analysis</div>
+
+            <figure class="chart-figure narrow">
+                <img src="Telco_customer_churn/12_multivariat_services_addon.png"
+                    alt="Churn rate by number of add-on services">
+                <figcaption class="chart-caption">Churn rate by <code>num_services</code>, the count of the six optional
+                    add-ons — restricted to customers with internet service
+                    (<code>InternetService != 'No'</code>)</figcaption>
+            </figure>
+
+            <ul class="finding-body">
+                <li><strong>Strictly monotone</strong> among customers who have internet: 0 → <strong>52.2%</strong>,
+                    1 → 45.6%, 2 → 35.7%, 3 → 26.7%, 4 → 22.2%, 5 → 12.4%, 6 → <strong>5.1%</strong>. A ten-fold spread
+                    from one engineered feature.</li>
+            </ul>
+
+            <div class="finding-title">Charges Analysis</div>
+
+            <figure class="chart-figure narrow">
+                <img src="Telco_customer_churn/13_multivariat_charges_pairplot.png"
+                    alt="Pairwise scatter of tenure, MonthlyCharges and TotalCharges coloured by churn">
+                <figcaption class="chart-caption">tenure / MonthlyCharges / TotalCharges pairwise, coloured by
+                    churn</figcaption>
+            </figure>
+
+            <ul class="finding-body">
+                <li><strong>Churn sits in the upper-left corner</strong> of tenure × price — short tenure <em>and</em> a
+                    high bill. Long-tenure customers paying $100 stay.</li>
+                <li><strong>Collinearity warning:</strong> TotalCharges is nearly determined by tenure ×
+                    MonthlyCharges.</li>
+            </ul>
+
+            <!-- ── 4. Correlation ──────────────────────────────────── -->
+            <h3 id="correlation"><i class="fas fa-ruler-horizontal"></i> 4 · Feature Correlation</h3>
+
+            <figure class="chart-figure">
+                <img src="Telco_customer_churn/14_feature_correlation.png" alt="All features correlated with churn">
+                <figcaption class="chart-caption">Every one-hot feature ranked by correlation with churn</figcaption>
+            </figure>
+
+            <ul class="finding-body">
+                <li><span style="color:#c0392b;"><strong>Up:</strong></span> fiber optic <strong>+0.31</strong>,
+                    electronic check <strong>+0.30</strong>, MonthlyCharges +0.19, paperless billing +0.19, senior
+                    citizen +0.15.</li>
+                <li><span style="color:#3c8d5b;"><strong>Down:</strong></span> tenure <strong>−0.35</strong>, two-year
+                    contract <strong>−0.30</strong>, the six no-internet dummies −0.23, TotalCharges −0.20, one-year
+                    contract −0.18, online security −0.17, tech support −0.16.</li>
+                <li><strong>Flat:</strong> streaming TV / movies +0.06, MultipleLines +0.04, PhoneService +0.01, gender
+                    −0.01.</li>
+            </ul>
+
+            <!-- ── Key Takeaways ─────────────────────────────────────── -->
+            <div class="takeaway-box" id="p1-takeaways">
+                <h4 style="margin-top:0; border:none; padding:0;">
+                    <i class="fas fa-lightbulb"></i> &nbsp;Part 1 Key Takeaways
+                </h4>
+                <p style="margin-bottom:10px;">
+                    Who churns, against the <strong>26.6% baseline</strong>:
+                </p>
+                <ul style="margin-bottom:0; line-height:1.6;">
+                    <li><strong>The one segment to act on — 67.8%.</strong> New month-to-month customers on paperless
+                        billing and electronic check, months 0–12. <strong>701 customers, 25.4% of all churners</strong>
+                        — one persona, a quarter of the problem.</li>
+                    <li><strong>Strong single flags,</strong> each well above baseline:
+                        <ul style="margin:4px 0 0;">
+                            <li>Internet customers with <strong>zero add-ons — 52.2%</strong></li>
+                            <li>First-year customers — <strong>47.7%</strong> (still 28.7% in year two)</li>
+                            <li>Electronic check — <strong>45.3%</strong></li>
+                            <li>Month-to-month — <strong>42.7%</strong></li>
+                            <li>Fiber optic — <strong>41.9%</strong> (vs 19.0% on DSL)</li>
+                            <li>No OnlineSecurity — <strong>41.8%</strong>; no TechSupport — <strong>41.6%</strong></li>
+                            <li>Paperless billing — <strong>33.6%</strong></li>
+                            <li>Short tenure <em>and</em> a high bill — the upper-left corner of tenure × price</li>
+                        </ul>
+                    </li>
+                    <li><strong>Weak flags — real, but not actionable.</strong> Seniors 41.7%, no partner 33.0%, no
+                        dependents 31.3%. And rate ≠ volume: the worst demographic cell (49.8%) holds 317 customers and
+                        8.5% of churners, while its 30–32% neighbours hold 2,719 and 45.4%.</li>
+                    <li><strong>No signal at all:</strong> gender, PhoneService, MultipleLines, StreamingTV /
+                        StreamingMovies.</li>
+                    <li><strong>Who stays.</strong> Two-year contract <strong>2.8%</strong> (0.0% in the first 24
+                        months), six add-ons 5.1%, tenure past five years 6.6%, no internet service 7.4%, automatic
+                        payment 15–17%.</li>
+                </ul>
+            </div>
+
+            <!-- ══════════════════════════════════════════════════════════ -->
+            <!-- ══                     P A R T   2                      ══ -->
+            <!-- ══════════════════════════════════════════════════════════ -->
+            <div class="part-divider" id="part2">
+                <h2>Part 2 — Predictive Modelling</h2>
+                <p class="part-label">From "who left" to "who is about to"</p>
+            </div>
+
+            <h3 id="approach"><i class="fas fa-project-diagram"></i> Model Pipeline</h3>
+            <p class="lead-text">
+                Part 1 explained churn in hindsight. Part 2 turns those drivers into a model that scores a
+                <strong>current</strong> customer, so the retention team gets a ranked call list instead of a report.
+            </p>
+            <p>
+                Seven algorithms, all tuned under one shared protocol, all scored on the same untouched test set —
+                <strong>1,407 customers, 374 of them churners</strong>:
+            </p>
+
+            <ol class="pipeline-list">
+                <li><strong>Data preprocessing.</strong> Dummy encoding → 34 columns, a stratified 80/20 split into
+                    <strong>5,625 train / 1,407 test</strong>, then <code>StandardScaler</code>; resampling (SMOTE) was
+                    tested and dropped.
+                </li>
+                <li><strong>Imbalance by weighting.</strong> <code>class_weight='balanced'</code>,
+                    <code>scale_pos_weight=2.76</code> for XGBoost / LightGBM, <code>auto_class_weights</code> for
+                    CatBoost — so the 0.5 cut-off already sits at a recall-oriented operating point.
+                </li>
+
+                <li><strong>Hyperparameter tuning.</strong> Grid and randomised search for the classical models,
+                    Bayesian optimisation with <strong>Optuna</strong> for the boosting libraries — every search scored
+                    on the same 5-fold stratified CV.
+                </li>
+                <li><strong>Calibration, then delivery.</strong> Isotonic calibration on the winning model, then a
+                    ranked risk list with tiers.</li>
+            </ol>
+
+            <div class="note-box">
+                <i class="fas fa-exclamation-triangle"></i> &nbsp;<strong>Why accuracy is the wrong metric
+                    here.</strong>
+                Predicting "nobody churns" scores <strong>73.4%</strong> and is worth nothing. Every search therefore
+                optimised <strong>ROC-AUC</strong> — threshold-free, so it measures how well a model <em>ranks</em>
+                customers by risk. Recall and precision are read <em>after</em> the fact, at a cut-off the business
+                owns.
+            </div>
+
+            <!-- ── Benchmark ─────────────────────────────────────────── -->
+            <h3 id="benchmark"><i class="fas fa-trophy"></i> Model Benchmark</h3>
+            <p>
+                Best tuned configuration per algorithm, scored on the untouched 1,407-customer test set at the default
+                0.5 cut-off, sorted by ROC-AUC:
+            </p>
+            <div class="table-container auto">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Accuracy</th>
+                            <th>Precision</th>
+                            <th>Recall</th>
+                            <th>F1</th>
+                            <th>ROC-AUC</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="best-row">
+                            <td class="left">LightGBM</td>
+                            <td class="num">0.7356</td>
+                            <td class="num">0.5016</td>
+                            <td class="num">0.8155</td>
+                            <td class="num">0.6212</td>
+                            <td class="num">0.8437</td>
+                        </tr>
+                        <tr>
+                            <td class="left">XGBoost</td>
+                            <td class="num">0.7299</td>
+                            <td class="num">0.4951</td>
+                            <td class="num">0.8128</td>
+                            <td class="num">0.6154</td>
+                            <td class="num">0.8416</td>
+                        </tr>
+                        <tr>
+                            <td class="left">Random Forest</td>
+                            <td class="num">0.7491</td>
+                            <td class="num">0.5183</td>
+                            <td class="num">0.7941</td>
+                            <td class="num">0.6272</td>
+                            <td class="num">0.8405</td>
+                        </tr>
+                        <tr>
+                            <td class="left">CatBoost</td>
+                            <td class="num">0.7285</td>
+                            <td class="num">0.4935</td>
+                            <td class="num">0.8102</td>
+                            <td class="num">0.6134</td>
+                            <td class="num">0.8393</td>
+                        </tr>
+                        <tr>
+                            <td class="left">Logistic Regression</td>
+                            <td class="num">0.7249</td>
+                            <td class="num">0.4893</td>
+                            <td class="num">0.7968</td>
+                            <td class="num">0.6063</td>
+                            <td class="num">0.8343</td>
+                        </tr>
+                        <tr>
+                            <td class="left">Decision Tree</td>
+                            <td class="num">0.7008</td>
+                            <td class="num">0.4649</td>
+                            <td class="num">0.8316</td>
+                            <td class="num">0.5964</td>
+                            <td class="num">0.8271</td>
+                        </tr>
+                        <tr>
+                            <td class="left">AdaBoost</td>
+                            <td class="num">0.7164</td>
+                            <td class="num">0.4800</td>
+                            <td class="num">0.8021</td>
+                            <td class="num">0.6006</td>
+                            <td class="num">0.8229</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ── Drivers ─────────────────────────────────────────── -->
+            <h3 id="drivers"><i class="fas fa-search-plus"></i> What the Models Are Actually Using</h3>
+            <p>
+                Two different algorithms, two different importance definitions, one model-agnostic check: does either
+                of them disagree with Part 1?
+            </p>
+
+            <div class="chart-pair">
+                <figure class="chart-figure">
+                    <img src="Telco_customer_churn/16_rf_feature.png"
+                        alt="Random Forest mean decrease in impurity for the top 15 one-hot features">
+                    <figcaption class="chart-caption">Random Forest — mean decrease in impurity (MDI): magnitude
+                        only</figcaption>
+                </figure>
+                <figure class="chart-figure">
+                    <img src="Telco_customer_churn/15_sharp.png"
+                        alt="SHAP beeswarm plot of the top 20 features for the LightGBM model">
+                    <figcaption class="chart-caption">LightGBM — SHAP beeswarm: direction <em>and</em> magnitude, per
+                        customer</figcaption>
+                </figure>
+            </div>
+
+            <ul class="finding-body">
+                <li><strong>Same top five, near-identical order</strong> — tenure, Contract_Two&nbsp;year, TotalCharges,
+                    Fiber&nbsp;optic, Electronic&nbsp;check. Two unrelated algorithms, exactly the drivers Part 1
+                    flagged.</li>
+                <li><strong>SHAP adds the sign.</strong> A two-year contract pushes churn <em>down</em> by up to 1.3
+                    log-odds; low tenure and fiber optic push it <em>up</em>. MDI gives magnitude only — which is why it
+                    cannot be printed on a call sheet.</li>
+                <li><strong>Two caveats.</strong> Dummies understate their parent feature (Contract is split across two
+                    columns), and MDI favours columns with more split points, flattering the three continuous features
+                    against 31 binaries.</li>
+                <li><strong>The bottom is Part 1's null list</strong> — streaming, MultipleLines, PaperlessBilling — and
+                    gender appears in neither chart.</li>
+            </ul>
+
+            <!-- ── Deployment ──────────────────────────────────────── -->
+            <h3 id="calibration"><i class="fas fa-paper-plane"></i> From Probability to Action</h3>
+            <p>
+                Isotonic calibration cut the Brier score from <strong>0.1691 to 0.1372</strong> at unchanged ROC-AUC —
+                so a score of 0.60 really means 60%, and the tiers can carry money. Value at risk is defined as
+                <code>MonthlyCharges × 12 months × 30% margin × probability</code>:
+            </p>
+            <div class="table-container auto">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Risk tier</th>
+                            <th>Customers</th>
+                            <th>Mean prob.</th>
+                            <th>Actual churn</th>
+                            <th>Value at risk</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="r5">Critical <span class="dim">&gt; 0.70</span></td>
+                            <td class="num">568</td>
+                            <td class="num">0.813</td>
+                            <td class="num">83.1%</td>
+                            <td class="num">$136,603</td>
+                        </tr>
+                        <tr>
+                            <td class="r4">High <span class="dim">0.50 – 0.70</span></td>
+                            <td class="num">933</td>
+                            <td class="num">0.595</td>
+                            <td class="num">59.6%</td>
+                            <td class="num"><strong>$152,057</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="r2">Medium <span class="dim">0.30 – 0.50</span></td>
+                            <td class="num">1,300</td>
+                            <td class="num">0.377</td>
+                            <td class="num">37.4%</td>
+                            <td class="num">$127,039</td>
+                        </tr>
+                        <tr>
+                            <td class="r0">Low <span class="dim">&lt; 0.30</span></td>
+                            <td class="num">4,231</td>
+                            <td class="num">0.089</td>
+                            <td class="num">8.4%</td>
+                            <td class="num">$89,611</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-5 text-center">
+                <a href="../../index.html#projects" class="btn btn-primary btn-lg btn-back">
+                    <i class="fas fa-arrow-left"></i> Back to Portfolio
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer style="text-align:center; padding:20px; color:#6c757d;">
+        <p>© Telecom Customer Churn Prediction</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- highlight the TOC entry for the section currently in view -->
+    <script>
+        (function () {
+            var links = Array.prototype.slice.call(
+                document.querySelectorAll('.toc-bar a[href^="#"]'));
+            var items = links.map(function (a) {
+                return { link: a, target: document.getElementById(a.hash.slice(1)) };
+            }).filter(function (i) { return i.target; });
+
+            if (!items.length) return;
+
+            var current = null;
+            var queued = false;
+
+            function update() {
+                queued = false;
+                var line = 100;   // a bit below the fixed navbar
+                var active = items[0];
+
+                for (var i = 0; i < items.length; i++) {
+                    if (items[i].target.getBoundingClientRect().top <= line) {
+                        active = items[i];
+                    }
+                }
+
+                // at the very bottom, the last section wins even if it never crossed the line
+                if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 2) {
+                    active = items[items.length - 1];
+                }
+
+                if (active.link === current) return;
+                if (current) current.classList.remove('active');
+                active.link.classList.add('active');
+                current = active.link;
+
+                // keep the active entry visible in the sidebar's own scroll area
+                var bar = document.querySelector('.toc-bar');
+                if (bar && bar.scrollHeight > bar.clientHeight) {
+                    var top = current.offsetTop - bar.clientHeight / 2;
+                    bar.scrollTo({ top: top, behavior: 'smooth' });
+                }
+            }
+
+            function onScroll() {
+                if (queued) return;
+                queued = true;
+                window.requestAnimationFrame(update);
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', onScroll);
+            update();
+        })();
+    </script>
+</body>
+
+</html>
