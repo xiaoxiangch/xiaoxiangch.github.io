@@ -1,0 +1,330 @@
+<style>
+    /* 灰底 + 白面板，和 projects / skills 一致 */
+    .contact-section {
+        background-color: #f4f5f7;
+        padding: 28px 24px 40px;
+        /* 撑满一屏（减去 56px 导航栏），白面板跟着拉满高度 */
+        min-height: calc(100vh - 56px);
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+    }
+
+    .contact-shell {
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 40px 40px 48px;
+        background-color: #fff;
+        border: 1px solid #e9ecef;
+        border-radius: 14px;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+        /* 标题固定在顶部，内容在剩余空间里垂直居中 */
+        display: flex;
+        flex-direction: column;
+    }
+
+    .contact-shell .panel-title {
+        font-size: 1.9rem;
+        font-weight: 700;
+        color: #1a1f36;
+        margin: 0 0 18px;
+        padding-bottom: 18px;
+        border-bottom: 1px solid #e3e5e8;
+    }
+
+    .contact-grid {
+        flex: 1;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 48px;
+        align-items: center;
+    }
+
+    /* 左：邀约文字 + 邮箱 */
+    .contact-intro {
+        flex: 1 1 340px;
+    }
+
+    .contact-intro .lead-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #6c757d;
+        margin-bottom: 22px;
+    }
+
+    /* 求职状态 + 地点 */
+    .status-line {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #1a6e2e;
+        background-color: #ebfbee;
+        border: 1px solid #d3f9d8;
+        border-radius: 20px;
+        padding: 6px 14px;
+        margin-bottom: 18px;
+    }
+
+    .status-line .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #2f9e44;
+        flex: 0 0 8px;
+    }
+
+    .location-line {
+        font-size: 0.95rem;
+        color: #868e96;
+        margin-bottom: 8px;
+    }
+
+    /* 最后一条信息行和下面的说明文字之间留开 */
+    .location-line:last-of-type {
+        margin-bottom: 22px;
+    }
+
+    .location-line i {
+        width: 16px;
+        text-align: center;
+    }
+
+    .location-line i {
+        margin-right: 7px;
+        color: #adb5bd;
+    }
+
+    /* 简历下载 */
+    .btn-resume {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        padding: 11px 24px;
+        border-radius: 6px;
+        background-color: #1565f5;
+        border: 1px solid #1565f5;
+        color: #fff;
+        text-decoration: none;
+        transition: background-color 0.2s;
+    }
+
+    .btn-resume:hover {
+        background-color: #0b3fa8;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .btn-copy {
+        font-size: 0.82rem;
+        font-weight: 600;
+        padding: 5px 12px;
+        border-radius: 6px;
+        border: 1px solid #ced4da;
+        background-color: transparent;
+        color: #6c757d;
+        cursor: pointer;
+        transition: all 0.2s;
+        white-space: nowrap;
+    }
+
+    .btn-copy:hover {
+        border-color: #1565f5;
+        color: #1565f5;
+    }
+
+    .btn-copy.copied {
+        border-color: #2f9e44;
+        color: #2f9e44;
+    }
+
+    /* 右：社交横条 */
+    .contact-links {
+        flex: 1 1 340px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .contact-links>a,
+    .contact-links>.link-row {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 20px 24px;
+        border: 1px solid #e9ecef;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: all 0.2s;
+    }
+
+    .contact-links>a:hover,
+    .contact-links>.link-row:hover {
+        border-color: #1565f5;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+        text-decoration: none;
+    }
+
+    /* Email 行里的地址本身也是 mailto 链接 */
+    .contact-links a.email-link {
+        color: #868e96;
+        text-decoration: none;
+    }
+
+    .contact-links a.email-link:hover {
+        color: #1565f5;
+        text-decoration: underline;
+    }
+
+    .contact-links .badge-icon {
+        flex: 0 0 46px;
+        width: 46px;
+        height: 46px;
+        border-radius: 10px;
+        background-color: #f4f5f7;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .contact-links .badge-icon img {
+        width: 28px;
+        height: 28px;
+        object-fit: contain;
+    }
+
+    .contact-links .link-name {
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: #212529;
+        margin-bottom: 2px;
+    }
+
+    .contact-links .link-desc {
+        font-size: 0.88rem;
+        color: #868e96;
+        line-height: 1.5;
+    }
+
+    .contact-links .arrow {
+        margin-left: auto;
+        color: #ced4da;
+        font-size: 0.9rem;
+        transition: color 0.2s, transform 0.2s;
+    }
+
+    .contact-links a:hover .arrow {
+        color: #1565f5;
+        transform: translateX(3px);
+    }
+
+    @media (max-width: 767px) {
+        .contact-section {
+            padding: 16px 12px 30px;
+            /* 手机上内容变高，不强制拉满 */
+            min-height: auto;
+        }
+
+        .contact-shell {
+            padding: 20px 16px 24px;
+            border-radius: 10px;
+        }
+
+        .contact-grid {
+            gap: 28px;
+        }
+    }
+</style>
+
+<section id="contact" class="contact-section">
+    <div class="contact-shell">
+        <h2 class="panel-title">Contact</h2>
+
+        <div class="contact-grid">
+
+            <div class="contact-intro">
+
+                <!-- TODO: 按实际求职状态改；不在找工作就整块删掉 -->
+                <div class="status-line">
+                    <span class="dot"></span>
+                    Open to full-time data scientist roles
+                </div>
+
+                <!-- TODO: 换成真实城市 -->
+                <div class="location-line">
+                    <i class="fas fa-location-dot"></i>Based in Zurich, Switzerland · Open to remote
+                </div>
+
+                <div class="location-line">
+                    <i class="fas fa-id-card"></i>Swiss B permit — no visa sponsorship required
+                </div>
+
+                <p class="lead-text">
+                    Whether it's a question about one of the projects here or just to say hello — feel free to reach
+                    out.
+                </p>
+
+                <!-- TODO: 把简历 PDF 放到仓库根目录，改成实际文件名 -->
+                <a class="btn-resume" href="resume.pdf" target="_blank">
+                    <i class="fas fa-download"></i>Download Résumé
+                </a>
+            </div>
+
+            <div class="contact-links">
+                <a href="https://www.linkedin.com/in/xiaoxiang-cheng/" target="_blank">
+                    <div class="badge-icon"><img src="icons/linkedin.png" alt="LinkedIn"></div>
+                    <div>
+                        <div class="link-name">LinkedIn</div>
+                        <div class="link-desc">Work experience, education and recommendations</div>
+                    </div>
+                    <i class="fas fa-arrow-right arrow"></i>
+                </a>
+                <a href="https://github.com/xiaoxiangch" target="_blank">
+                    <div class="badge-icon"><img src="icons/github.png" alt="GitHub"></div>
+                    <div>
+                        <div class="link-name">GitHub</div>
+                        <div class="link-desc">Source code and notebooks behind the projects</div>
+                    </div>
+                    <i class="fas fa-arrow-right arrow"></i>
+                </a>
+                <div class="link-row">
+                    <div class="badge-icon"><img src="icons/gmail.png" alt="Gmail"></div>
+                    <div>
+                        <div class="link-name">Email</div>
+                        <a class="link-desc email-link" href="mailto:chengxxgm@gmail.com">chengxxgm@gmail.com</a>
+                    </div>
+                    <button type="button" class="btn-copy" data-email="chengxxgm@gmail.com">Copy</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script>
+    $(document).on('click', '.btn-copy', function () {
+        var $btn = $(this);
+        var email = $btn.data('email');
+
+        function done() {
+            $btn.text('Copied!').addClass('copied');
+            setTimeout(function () {
+                $btn.text('Copy').removeClass('copied');
+            }, 1600);
+        }
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(email).then(done);
+        } else {
+            // 老浏览器 / 非 https 的兜底
+            var $tmp = $('<input>').val(email).appendTo('body').select();
+            document.execCommand('copy');
+            $tmp.remove();
+            done();
+        }
+    });
+</script>

@@ -1,0 +1,189 @@
+<style>
+    .about-card-section {
+        padding: 40px 15px 60px;
+    }
+
+    .about-card {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        background-color: #fff;
+        border: 1px solid #e9ecef;
+        border-radius: 14px;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+        overflow: hidden;
+    }
+
+    /* 左栏：头像 + 姓名 + 头衔 + 社交图标 */
+    .about-card .profile {
+        flex: 0 0 300px;
+        max-width: 300px;
+        background-color: #f8f9fa;
+        border-right: 1px solid #e9ecef;
+        padding: 36px 24px;
+        text-align: center;
+    }
+
+    .about-card .profile img.avatar {
+        width: 170px;
+        height: 170px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 22px;
+    }
+
+    .about-card .profile .name {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #212529;
+        margin-bottom: 8px;
+    }
+
+    .about-card .profile .role {
+        font-size: 1.15rem;
+        color: #343a40;
+        margin-bottom: 6px;
+    }
+
+    .about-card .profile .org {
+        font-size: 0.95rem;
+        color: #868e96;
+        margin-bottom: 18px;
+    }
+
+    .about-card .profile .social a {
+        color: #1565f5;
+        font-size: 1.25rem;
+        margin: 0 7px;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    .about-card .profile .social a:hover {
+        color: #0b3fa8;
+    }
+
+    /* 右栏：简介 + 分块信息 */
+    .about-card .bio {
+        flex: 1 1 420px;
+        padding: 36px 40px;
+        text-align: left;
+    }
+
+    .about-card .bio .lead-text {
+        font-size: 1.15rem;
+        line-height: 1.85;
+        color: #495057;
+        margin-bottom: 28px;
+    }
+
+    .about-card .bio .lead-text em {
+        font-style: italic;
+        font-weight: 700;
+        color: #495057;
+    }
+
+    .about-card .bio h6 {
+        color: #1565f5;
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+    }
+
+    .about-card .bio h6 i {
+        margin-right: 8px;
+    }
+
+    .about-card .bio .block {
+        margin-bottom: 22px;
+    }
+
+    .about-card .bio .block p {
+        font-size: 1.05rem;
+        color: #343a40;
+        margin-bottom: 0;
+    }
+
+    .about-card .bio .btn-more {
+        background-color: #1565f5;
+        border-color: #1565f5;
+        color: #fff;
+        font-weight: 600;
+        padding: 10px 26px;
+        border-radius: 6px;
+    }
+
+    .about-card .bio .btn-more:hover {
+        background-color: #0b3fa8;
+        border-color: #0b3fa8;
+        color: #fff;
+    }
+
+    @media (max-width: 767px) {
+        .about-card .profile {
+            flex: 1 1 100%;
+            max-width: 100%;
+            border-right: none;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .about-card .bio {
+            padding: 28px 24px;
+        }
+    }
+</style>
+
+<section id="about" class="about-card-section">
+    <div class="about-card">
+
+        <!-- 左栏 -->
+        <div class="profile">
+            <img src="images/about/cheng_cv_photo.jpg" alt="Xiaoxiang Cheng" class="avatar">
+            <div class="name">Xiaoxiang Cheng</div>
+            <div class="role">Data Scientist</div>
+            <div class="org">Msc in Math · ~4 Years Experience
+            </div>
+            <div class="social">
+                <a href="mailto:chengxxgm@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.linkedin.com/in/xiaoxiang-cheng/" target="_blank" title="LinkedIn"><i
+                        class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/xiaoxiangch" target="_blank" title="GitHub"><i
+                        class="fab fa-github"></i></a>
+            </div>
+        </div>
+
+        <!-- 右栏 -->
+        <div class="bio">
+            <p class="lead-text">
+                Xiaoxiang Cheng turns messy raw data into decisions people can act on — building reliable pipelines,
+                clear models, and dashboards that tell the story behind the numbers. Her work spans
+                <em>visualization &amp; analysis</em>, <em>machine learning</em>, <em>time series
+                    forecasting</em> and <em> deep learning </em>.
+            </p>
+
+            <div class="block">
+                <h6><i class="fas fa-flask"></i>Focus Areas</h6>
+                <p>Data Visualization, Statistical Analysis, Machine Learning, Time Series Forecasting, Deep Learning
+                </p>
+            </div>
+
+            <div class="block">
+                <h6><i class="fas fa-toolbox"></i>Toolbox</h6>
+                <p>SQL · Python (Pandas, Scikit-Learn, Pytorch) · XGBoost/LightGBM/CatBoost · Power BI · Excel</p>
+            </div>
+
+            <div class="block">
+                <h6><i class="fas fa-graduation-cap"></i>Education</h6>
+                <p>M.Sc., Math · B.Sc., Math</p>
+            </div>
+
+            <a href="#projects" class="btn btn-more">
+                See my projects <i class="fas fa-arrow-right ml-1"></i>
+            </a>
+        </div>
+
+    </div>
+</section>

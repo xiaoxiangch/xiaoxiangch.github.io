@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divvy Bike Share Analysis | Project Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        /* 继承主页的全局风格 */
+        body {
+            padding-top: 80px;
+            /* 为固定导航栏留出空间 */
+            background-color: #f8f9fa;
+            color: #333;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        /* 导航栏样式保持一致 */
+        .navbar {
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 项目详情容器 */
+        .project-detail-container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 50px;
+        }
+
+        /* 项目主图 */
+        .project-hero-img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 标题样式继承自 .about-section h2 */
+        h1.project-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h3 {
+            border-left: 5px solid #343a40;
+            padding-left: 15px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        /* 技术标签样式 (Badges) */
+        .tech-tag {
+            margin-right: 5px;
+            margin-bottom: 10px;
+            padding: 8px 15px;
+            font-size: 0.9rem;
+        }
+
+        /* 返回按钮 */
+        .btn-back {
+            transition: all 0.3s;
+        }
+
+        .btn-back:hover {
+            transform: translateX(-5px);
+        }
+
+        /* 自定义大一号的字体样式 */
+        .lead-text {
+            font-size: 1.15rem;
+            /* 比普通字体大 15% */
+            line-height: 1.7;
+            /* 增加行高，提升阅读舒适度 */
+            color: #2c3e50;
+            /* 使用深蓝灰色，增加专业感 */
+            font-weight: 400;
+            /* 保持适中的粗细 */
+            margin-top: 15px;
+        }
+
+        /* 如果你想让 Overview 的第一段稍显次要，可以给它加个颜色 */
+        .intro-text {
+            color: #6c757d;
+            /* 灰色，突出后面的 Goal */
+        }
+
+        /* 表格*/
+        .data-table {
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .table-container {
+            max-height: 300px;
+            /* 控制高度 */
+            overflow-y: auto;
+            /* 关键：出现纵向滚动条 */
+            margin: 20px auto;
+            width: 90%;
+            border: 1px solid #ddd;
+        }
+
+        .data-table thead th {
+            position: sticky;
+            top: 0;
+            background: #f5f5f5;
+            /* 防止滚动时透明 */
+            z-index: 1;
+            /* 防止被覆盖 */
+        }
+
+
+        .data-table th,
+        .data-table td {
+            border: 1px solid #ddd;
+            /* 内部单元格边框 */
+            padding: 8px;
+        }
+
+        .data-table {
+            width: 100%;
+            /* 占满父容器宽度 */
+            max-width: 1200px;
+            /* 设置最小宽度，如果内容多可以撑开 */
+            border-collapse: collapse;
+        }
+    </style>
+    </style>
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../../index.html#home">Portfolio</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="../../index.html#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../index.html#projects">Projects</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!--
+
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-md-10 mx-auto">
+                <a href="../../index.html#projects" class="btn btn-outline-dark btn-back">
+                    <i class="fas fa-arrow-left"></i> Back to Portfolio
+                </a>
+            </div>
+        </div>
+    -->
+
+    <div class="row">
+        <div class="col-md-10 mx-auto project-detail-container">
+
+            <h1 class="project-title">HR Analytics in Power BI</h1>
+            <!--
+                <img src="../../images/projects/divvy-bike-feature.jpg" class="project-hero-img"
+                    alt="Divvy Project Hero">
+                -->
+            <div class="text-center mb-4">
+                <span class="badge badge-pill badge-dark tech-tag">Power BI</span>
+                <!-- <span class="badge badge-pill badge-success tech-tag">PyArrow</span>
+                <span class="badge badge-pill badge-primary tech-tag">Matplotlib</span>
+                <span class="badge badge-pill badge-info tech-tag">Seaborn</span> -->
+
+            </div>
+
+            <h3><i class="fas fa-info-circle"></i> Project Overview</h3>
+            <!-- <p class="lead-text">-->
+            <p>The core goal of this case study is to build a report using fictitious datasets from a Tech company
+                called Atlas Labs. Atlas Labs HR team want to be able to monitor key metrics on employees. Their
+                secondary goal is to understand what factors impact employee attrition.
+            </p>
+            <p>This project analyzes historical trip data from Divvy to uncover distinct bike usage patterns across
+                different user segments. By bridging behavioral data with environmental factors, the goal is to
+                provide actionable insights that help stakeholders design highly targeted, data-driven marketing
+                and operational strategies.</p>
+
+            <p> The analysis focuses on the period from April 2020 to December 2025. This specific
+                timeframe was selected because Divvy underwent a major system migration and data schema shift in
+                April 2020. Standardizing on this modern schema ensures accurate and consistent long-term trend
+                analysis.</p>
+
+            <!--
+
+                <h3><i class="fas fa-exclamation-triangle"></i> Challanges</h3>
+                <ul>
+                    <li><strong>Data Volume & Memory Management:</strong> Integrating over five
+                        years of trip data (2020-2025) comprising more than 31.5 million raw records posed a
+                        massive risk of memory (RAM) overflow.</li>
+                    <li><strong>External Data Integration: </strong> Synchronizing high-resolution hourly
+                        weather data with trip records required precise temporal alignment and robust handling API rate
+                        limits during the fetching process.</li>
+
+                    <li><strong>Schema Inconsistency: </strong> Resolved data format variations across multiple years by
+                        casting identifiers to consistent strings and standardizing timestamps into datetime objects,
+                        effectively preventing merge failures.
+                </li>
+                <li><strong>Logic Inconsistency: </strong> The raw data contained significant noise. Performed
+                    rigorous filtering to exclude duration outliers (trips under 2 minutes or over 120 minutes) to
+                    preserve the integrity of behavioral analysis.</li>
+
+                </ul>
+                -->
+
+
+            <h3><i class="fas fa-tools"></i> Data Processing & Feature Engineering</h3>
+            <ul>
+                <li><strong>High-Performance Streaming Merge: </strong> Instead of loading all files into RAM, a
+                    Streaming Pipeline was implemented using PyArrow. Over 60 individual monthly CSV files were
+                    streamed, enforced with uniform data types (casting station and ride IDs to strings), and
+                    iteratively merged.
+                </li>
+                <li><strong>Parquet Conversion: </strong> The massive consolidated dataset was exported into a
+                    single, Snappy-compressed Parquet file. This drastically reduced disk footprint and optimized
+                    read/write speeds for downstream Exploratory Data Analysis (EDA).
+                </li>
+                <li><strong>Weather Feature Enrichment:
+                        <ul>
+                            <li>
+                    </strong> Integrated environmental context by fetching historical data via the Open-Meteo API.
+                </li>
+                <li>Variables like <code>temperature</code>,
+                    <code>humidity</code>, <code>precipitation</code>, and <code>wind speed</code> were extracted.
+                </li>
+                <li> A semantic mapping was then applied to transform technical WMO condition codes into
+                    human-readable categories ("Clear", "Cloudy", "Rain", and "Snow").</li>
+                </li>
+            </ul>
+
+            <li><strong>Temporal Feature Engineering: </strong>
+                The dataset was enhanced with multi-dimensional time features to support a comprehensive
+                analysis.
+                <ul>
+                    <li>Floored trip start times to the nearest hour (dt.floor('H')) to accurately
+                        join with hourly weather records. </li>
+                    <li>Derived new temporal variables (<code>year</code>,
+                        <code>month</code>, <code>day_of_week</code>,
+                        and <code>hour</code>) to analyze cyclical usage patterns.
+                    </li>
+                    <li> Computed <code>tripduration</code> in minutes
+                        and applied strict boundary filters to
+                        remove non-representative data points.</li>
+                </ul>
+            </li>
+            </ul>
+
+            <h3><i class="fas fa-database"></i> Data Overview</h3>
+            <p>After data preprocessing, we have a dataset contatining 23201748 rows and 25 columns. </p>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Description</th>
+                            <th>Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ride_id</td>
+                            <td>Unique identifier for each trip</td>
+                            <td>Object</td>
+                        </tr>
+                        <tr>
+                            <td>rideable_type</td>
+                            <td>Type of bike used (e.g., classic, electric)</td>
+                            <td>Object</td>
+                        </tr>
+                        <tr>
+                            <td>started_at</td>
+                            <td>Trip start timestamp</td>
+                            <td>Datetime</td>
+                        </tr>
+                        <tr>
+                            <td>ended_at</td>
+                            <td>Trip end timestamp</td>
+                            <td>Datetime</td>
+                        </tr>
+
+                        <tr>
+                            <td>start_station_name</td>
+                            <td>Name of the starting station</td>
+                            <td>Object</td>
+                        </tr>
+                        <tr>
+                            <td>start_station_id</td>
+                            <td>Unique ID of the starting station</td>
+                            <td>Object</td>
+                        </tr>
+                        <tr>
+                            <td>end_station_name</td>
+                            <td>Name of the ending station</td>
+                            <td>Object</td>
+                        </tr>
+                        <tr>
+                            <td>end_station_id</td>
+                            <td>Unique ID of the ending station</td>
+                            <td>Object</td>
+                        </tr>
+
+                        <tr>
+                            <td>start_lat</td>
+                            <td>Latitude of trip start location</td>
+                            <td>Float</td>
+                        </tr>
+                        <tr>
+                            <td>start_lng</td>
+                            <td>Longitude of trip start location</td>
+                            <td>Float</td>
+                        </tr>
+                        <tr>
+                            <td>end_lat</td>
+                            <td>Latitude of trip end location</td>
+                            <td>Float</td>
+                        </tr>
+                        <tr>
+                            <td>end_lng</td>
+                            <td>Longitude of trip end location</td>
+                            <td>Float</td>
+                        </tr>
+
+                        <tr>
+                            <td>member_casual</td>
+                            <td>User type (member or casual rider)</td>
+                            <td>Object</td>
+                        </tr>
+
+                        <tr>
+                            <td>temp</td>
+                            <td>Temperature at trip start time</td>
+                            <td>Float</td>
+                        </tr>
+                        <tr>
+                            <td>humidity</td>
+                            <td>Humidity level (%)</td>
+                            <td>Int</td>
+                        </tr>
+                        <tr>
+                            <td>precip</td>
+                            <td>Precipitation level (rain/snow)</td>
+                            <td>Float</td>
+                        </tr>
+                        <tr>
+                            <td>wind_speed</td>
+                            <td>Wind speed at trip time</td>
+                            <td>Float</td>
+                        </tr>
+                        <tr>
+                            <td>condition_code</td>
+                            <td>Weather condition category code</td>
+                            <td>Int</td>
+                        </tr>
+
+                        <tr>
+                            <td>year</td>
+                            <td>Year extracted from timestamp</td>
+                            <td>Int</td>
+                        </tr>
+                        <tr>
+                            <td>month</td>
+                            <td>Month extracted from timestamp</td>
+                            <td>Int</td>
+                        </tr>
+                        <tr>
+                            <td>week</td>
+                            <td>Week number of the year</td>
+                            <td>Int</td>
+                        </tr>
+                        <tr>
+                            <td>day</td>
+                            <td>Day of the week</td>
+                            <td>Int</td>
+                        </tr>
+                        <tr>
+                            <td>hour</td>
+                            <td>Hour of the day</td>
+                            <td>Int</td>
+                        </tr>
+
+                        <tr>
+                            <td>tripduration</td>
+                            <td>Trip duration in minutes</td>
+                            <td>Float</td>
+                        </tr>
+                        <tr>
+                            <td>events</td>
+                            <td>Weather events (e.g., rain, snow, fog)</td>
+                            <td>Object</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+            <h3><i class="fas fa-chart-line"></i> Key Insights</h3>
+
+            <p class="lead-text">
+                Across 23.2 million filtered rides, four dimensions of analysis — behavior, time, space,
+                and weather — converge on the same conclusion: <strong>members and casual riders are not
+                    different subscription tiers. They are two fundamentally different people, with different
+                    purposes, schedules, and responses to the environment.</strong>
+            </p>
+
+            <!-- ── Finding 1 ─────────────────────────────────────── -->
+            <h4 style="margin-top:35px;">Finding 1 &mdash; Two Distinct Behavioral Profiles</h4>
+            <p>
+                Members dominate total trips and ride with short, tightly clustered durations — the
+                signature of habitual, purposeful use. Casual riders take fewer trips but stay out
+                longer, with a higher median and a far wider spread (Fig 1). The KDE overlay (Fig 2)
+                makes the shape difference explicit: the member curve peaks sharply around 8–10 minutes
+                while the casual curve peaks later and trails a heavy right tail of 30–60 minute rides.
+                Same system, completely different purpose — a divergence that every subsequent finding
+                will confirm.
+            </p>
+
+            <div style="display: flex; justify-content: space-between; gap: 20px; margin: 20px 0;">
+                <figure style="flex: 1; text-align: center;">
+                    <img src="divvy_bike_results/01_user_type.png" alt="User type trip count and duration"
+                        style="width:100%; display:block; margin: 0 auto;">
+                    <figcaption style="margin-top:8px; font-size:0.9em; color:#555;">
+                        Fig 1 — Trip count (left) and trip duration boxplot (right) by user type
+                    </figcaption>
+                </figure>
+                <figure style="flex: 1; text-align: center;">
+                    <img src="divvy_bike_results/02_trip_duration_distribution.png"
+                        alt="Trip duration distribution by user type"
+                        style="width:100%; display:block; margin: 0 auto;">
+                    <figcaption style="margin-top:8px; font-size:0.9em; color:#555;">
+                        Fig 2 — KDE overlay: member distribution peaks early and tight; casual peaks later with a
+                        heavier tail
+                    </figcaption>
+                </figure>
+            </div>
+
+            <!-- ── Finding 2 ─────────────────────────────────────── -->
+            <h4 style="margin-top:35px;">Finding 2 &mdash; Time Proves It: Commuters vs. Leisure Riders</h4>
+            <p>
+                Splitting ridership by time dismantles any doubt. Members show a hard dual-peak at
+                <strong>8 AM and 5 PM on weekdays</strong> — a textbook commuter fingerprint. Casual riders
+                peak at 2–4 PM and surge on weekends while members decline. This is not a matter of degree;
+                it is a complete reversal of pattern. The seasonal view reinforces it: casual volume
+                collapses in winter while member ridership holds, because members have no alternative — the
+                bike is their commute.
+            </p>
+
+            <div style="display: flex; justify-content: space-between; gap: 20px; margin: 20px 0;">
+                <figure style="flex: 1; text-align: center;">
+                    <img src="divvy_bike_results/16_month_user_type.png" alt="Monthly ridership by user type"
+                        style="width:100%; display:block; margin: 0 auto;">
+                    <figcaption style="margin-top:8px; font-size:0.9em; color:#555;">
+                        Fig 3 — The Seasonal Divide: monthly trip count and duration by user type
+                    </figcaption>
+                </figure>
+                <figure style="flex: 1; text-align: center;">
+                    <img src="divvy_bike_results/17_day_user_type.png" alt="Daily ridership by user type"
+                        style="width:100%; display:block; margin: 0 auto;">
+                    <figcaption style="margin-top:8px; font-size:0.9em; color:#555;">
+                        Fig 4 — The Weekly Reversal: members dominate weekdays, casuals surge on weekends
+                    </figcaption>
+                </figure>
+            </div>
+
+            <figure style="text-align:center; margin: 20px 0;">
+                <img src="divvy_bike_results/18_hourly_user_type.png" alt="Hourly ridership by user type"
+                    style="width:100%; max-width:900px; display:block; margin: 0 auto;">
+                <figcaption style="margin-top:8px; font-size:0.9em; color:#555;">
+                    Fig 5 — The Daily Pulse: member dual-peak at 8 AM / 5 PM vs. casual afternoon plateau
+                </figcaption>
+            </figure>
+
+            <figure style="text-align:center; margin: 20px 0;">
+                <img src="divvy_bike_results/20_heatmap_day_hour.png" alt="Heatmap of trips by day and hour"
+                    style="width:100%; max-width:900px; display:block; margin: 0 auto;">
+                <figcaption style="margin-top:8px; font-size:0.9em; color:#555;">
+                    Fig 6 — Heatmap: the commuter grid (bright weekday morning/evening cells) vs. the weekend spread
+                </figcaption>
+            </figure>
+
+            <!-- ── Finding 3 ─────────────────────────────────────── -->
+            <h4 style="margin-top:35px;">Finding 3 &mdash; Space Confirms It: Office Corridors vs. Lakefront Trails</h4>
+            <p>
+                The behavioral split is physically encoded in the city. Member-dominant stations cluster
+                near transit hubs and office districts. The top casual stations — Streeter Dr. &amp; Grand
+                Ave. (Navy Pier) and Millennium Park — are tourist and recreation corridors. The
+                <em>Efficiency Paradox</em> chart makes the contrast concrete: members ride in straight,
+                purposeful lines (above the 15 km/h reference); casuals ride in loops, spending more time
+                to travel less distance.
+            </p>
+
+            <div style="display: flex; justify-content: space-between; gap: 20px; margin: 20px 0;">
+                <figure style="flex: 1; text-align: center;">
+                    <img src="divvy_bike_results/15_top10_start_stations.png" alt="Top 10 start stations overall"
+                        style="width:100%; display:block; margin: 0 auto;">
+                    <figcaption style="margin-top:8px; font-size:0.9em; color:#555;">
+                        Fig 7 — Top 10 start and end stations overall
+                    </figcaption>
+                </figure>
+                <figure style="flex: 1; text-align: center;">
+                    <img src="divvy_bike_results/24_top10_stations_by_user_type.png" alt="Top 10 stations by user type"
+                        style="width:100%; display:block; margin: 0 auto;">
+                    <figcaption style="margin-top:8px; font-size:0.9em; color:#555;">
+                        Fig 8 — Top 10 stations split by user type: different cities, same system
+                    </figcaption>
+                </figure>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; gap: 20px; margin: 20px 0;">
+                <figure style="flex: 1; text-align: center;">
+                    <img src="divvy_bike_results/25_geographic_distribution.png" alt="Geographic station distribution"
+                        style="width:100%; display:block; margin: 0 auto;">
+                    <figcaption style="margin-top:8px; font-size:0.9em; color:#555;">
+                        Fig 9 — Station map: bubble size = total trips, color = dominant user type
+                    </figcaption>
+                </figure>
+                <figure style="flex: 1; text-align: center;">
+                    <img src="divvy_bike_results/21_trip_duration_vs_straight_line_distance.png"
+                        alt="Trip duration vs straight-line distance"
+                        style="width:100%; display:block; margin: 0 auto;">
+                    <figcaption style="margin-top:8px; font-size:0.9em; color:#555;">
+                        Fig 10 — The Efficiency Paradox: members ride fast and far, casuals circle back
+                    </figcaption>
+                </figure>
+            </div>
+
+            <figure style="text-align:center; margin: 20px 0;">
+                <img src="divvy_bike_results/28_station_net_flow.png" alt="Station net flow chart"
+                    style="width:100%; max-width:750px; display:block; margin: 0 auto;">
+                <figcaption style="margin-top:8px; font-size:0.9em; color:#555;">
+                    Fig 11 — Net Flow: stations chronically losing bikes (deficit) vs. accumulating them (surplus)
+                </figcaption>
+            </figure>
+
+            <!-- ── Finding 4 ─────────────────────────────────────── -->
+            <h4 style="margin-top:35px;">Finding 4 &mdash; Weather Is the Stress Test: Members Pass, Casuals Fail</h4>
+            <p>
+                Weather is the ultimate behavioral test. When it rains or the temperature drops below
+                10°C, casual ridership falls sharply — they have a choice, and they exercise it. Members
+                maintain ridership through rain and cold because the bike is their commute, not an option.
+                The temperature sensitivity curve shows this gap explicitly: casual volume tracks the
+                weather closely, while member volume holds a relatively flat baseline. On rainy weekdays
+                versus rainy weekends, the effect compounds for casuals.
+            </p>
+
+            <div style="display: flex; justify-content: space-between; gap: 20px; margin: 20px 0;">
+                <figure style="flex: 1; text-align: center;">
+                    <img src="divvy_bike_results/30_weather_by_trip.png" alt="Trip count by weather event and user type"
+                        style="width:100%; display:block; margin: 0 auto;">
+                    <figcaption style="margin-top:8px; font-size:0.9em; color:#555;">
+                        Fig 12 — Trip count and duration by weather event and user type
+                    </figcaption>
+                </figure>
+                <figure style="flex: 1; text-align: center;">
+                    <img src="divvy_bike_results/31_temperature_by_user.png" alt="Temperature sensitivity by user type"
+                        style="width:100%; display:block; margin: 0 auto;">
+                    <figcaption style="margin-top:8px; font-size:0.9em; color:#555;">
+                        Fig 13 — Temperature sensitivity curve: casual demand tracks weather, member demand holds
+                    </figcaption>
+                </figure>
+            </div>
+
+            <figure style="text-align:center; margin: 20px 0;">
+                <img src="divvy_bike_results/32_rain_impact_by_day.png" alt="Rain impact by day and user type"
+                    style="width:100%; max-width:900px; display:block; margin: 0 auto;">
+                <figcaption style="margin-top:8px; font-size:0.9em; color:#555;">
+                    Fig 14 — Rain × Day of Week: the casual weekend drop is amplified on rainy days
+                </figcaption>
+            </figure>
+
+            <!-- ── Key Takeaways ──────────────────────────────────── -->
+            <div
+                style="background:#f0f4f8; border-left:5px solid #343a40; border-radius:6px; padding:25px 30px; margin-top:40px;">
+                <h4 style="margin-top:0; border:none; padding:0;"><i class="fas fa-lightbulb"></i> &nbsp;Key Takeaways
+                </h4>
+                <ul style="margin-bottom:0; line-height:1.9;">
+                    <li>
+                        <strong>Two personas, one system.</strong> Members are commuters: high frequency,
+                        short duration, weekday-dominant, weather-resilient. Casuals are leisure riders:
+                        lower frequency, longer duration, weekend-dominant, highly weather-sensitive.
+                    </li>
+                    <li>
+                        <strong>Operations priority — rebalancing.</strong> The Net Flow analysis identifies
+                        the chronically imbalanced stations. Rebalancing resources should be concentrated
+                        in the commuter corridor and timed to member rush peaks (7–9 AM and 4–6 PM on
+                        weekdays).
+                    </li>
+                    <li>
+                        <strong>Marketing priority — conversion.</strong> The highest-value conversion
+                        target is a casual rider who uses the system multiple times in summer. They already
+                        know the product. A targeted warm-season membership campaign can turn predictable
+                        leisure behaviour into reliable recurring revenue.
+                    </li>
+                </ul>
+            </div>
+
+
+
+
+
+
+
+
+            <div class="mt-5 text-center">
+                <!--
+                <a href="https://github.com/yourlink" class="btn btn-dark btn-lg mr-3">
+                    <i class="fab fa-github"></i> View code on GitHub -->
+                </a>
+                <a href="../../index.html#projects" class="btn btn-primary btn-lg">
+                    <i class="fas fa-external-link-alt"></i> Back to Portfolio
+                </a>
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+    <footer class="thank-you">
+        <!-- <p>© 2026 Your Name | Divvy Bike Share Analysis Project</p>  -->
+        <p>©Divvy Bike Share Analysis Project</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
