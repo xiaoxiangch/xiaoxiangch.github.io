@@ -1,0 +1,273 @@
+<style>
+    /* 灰色页面底色 + 居中白色面板，和 projects 保持一致 */
+    .skills-section {
+        background-color: #f4f5f7;
+        padding: 28px 24px 60px;
+    }
+
+    .skills-shell {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 32px 40px 40px;
+        background-color: #fff;
+        border: 1px solid #e9ecef;
+        border-radius: 14px;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+    }
+
+    /* 左对齐标题 + 下方细横线 */
+    .panel-title {
+        font-size: 1.9rem;
+        font-weight: 700;
+        color: #1a1f36;
+        margin: 0 0 18px;
+        padding-bottom: 18px;
+        border-bottom: 1px solid #e3e5e8;
+    }
+
+    /* 自适应网格：宽屏一行 3 个，等高由 grid 保证 */
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
+
+    .skill-card {
+        display: flex;
+        flex-direction: column;
+        padding: 24px;
+        border: 1px solid #e9ecef;
+        border-radius: 12px;
+        transition: box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .skill-card:hover {
+        border-color: #d0d7de;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+    }
+
+    /* 标题行：小 logo + 名称 */
+    .skill-card .head {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 14px;
+    }
+
+    .skill-card .head img {
+        width: 44px;
+        height: 44px;
+        object-fit: contain;
+        flex: 0 0 44px;
+    }
+
+    .skill-card .head h3 {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #212529;
+        margin: 0;
+        line-height: 1.3;
+    }
+
+    .skill-card .desc {
+        font-size: 0.98rem;
+        line-height: 1.7;
+        color: #6c757d;
+        margin-bottom: 0;
+    }
+
+    /* ===== Certificates ===== */
+    .certs-block {
+        margin-top: 40px;
+    }
+
+    .certs-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 16px;
+    }
+
+    .cert-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 18px 20px;
+        border: 1px solid #e9ecef;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .cert-item:hover {
+        border-color: #1565f5;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+        text-decoration: none;
+    }
+
+    .cert-item .badge-icon {
+        flex: 0 0 40px;
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        background-color: #eaf1ff;
+        color: #1565f5;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .cert-item .info {
+        min-width: 0;
+    }
+
+    .cert-item .cert-name {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #212529;
+        margin-bottom: 3px;
+        line-height: 1.4;
+    }
+
+    .cert-item .cert-issuer {
+        font-size: 0.86rem;
+        color: #868e96;
+    }
+
+    .cert-item .cert-issuer .sep {
+        margin: 0 6px;
+        color: #ced4da;
+    }
+
+    @media (max-width: 767px) {
+        .skills-section {
+            padding: 16px 12px 40px;
+        }
+
+        .skills-shell {
+            padding: 20px 16px 24px;
+            border-radius: 10px;
+        }
+    }
+</style>
+
+<section id="skills" class="skills-section">
+    <div class="skills-shell">
+        <h2 class="panel-title">Skills</h2>
+        <div class="skills-grid">
+
+            <!-- SQL -->
+            <div class="skill-card">
+                <div class="head">
+                    <img src="images/skills/3.png" alt="SQL">
+                    <h3>SQL</h3>
+                </div>
+                <p class="desc">Advanced SQL — window functions, joins, subqueries, CTEs, plus concepts such as views
+                    and triggers.</p>
+            </div>
+
+            <!-- Python -->
+            <div class="skill-card">
+                <div class="head">
+                    <img src="images/skills/1.png" alt="Python">
+                    <h3>Python</h3>
+                </div>
+                <p class="desc">Data manipulation with pandas, visualization with Matplotlib and Seaborn, machine
+                    learning with scikit-learn and PyTorch.</p>
+            </div>
+
+            <!-- Power BI -->
+            <div class="skill-card">
+                <div class="head">
+                    <img src="images/skills/2.png" alt="Power BI">
+                    <h3>Power BI</h3>
+                </div>
+                <!-- TODO: 换成一句真实描述（DAX、数据建模、报表设计等） -->
+                <p class="desc">Interactive dashboards and reports — data modelling, DAX measures, and report design for
+                    business stakeholders.</p>
+            </div>
+
+            <!-- EDA -->
+            <div class="skill-card">
+                <div class="head">
+                    <img src="images/skills/4.png" alt="Exploratory Data Analysis">
+                    <h3>Exploratory Data Analysis</h3>
+                </div>
+                <p class="desc">Finding patterns and trends, paired with data cleaning to get raw data
+                    analysis-ready.</p>
+            </div>
+
+            <!-- Data Storytelling -->
+            <div class="skill-card">
+                <!-- TODO: 换一张自己的图标，现在和 EDA 共用 4.png -->
+                <div class="head">
+                    <img src="images/skills/4.png" alt="Data Storytelling">
+                    <h3>Data Storytelling</h3>
+                </div>
+                <!-- TODO: 换掉 lorem ipsum -->
+                <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nisl erat. Sed et
+                    purus ornare, eleifend tellus ut, fermentum arcu.</p>
+            </div>
+
+            <!-- 待补充：Machine Learning / A/B Testing / Statistics & Probability -->
+
+        </div>
+
+        <!-- ===== Certificates ===== -->
+        <div class="certs-block">
+            <h2 class="panel-title">Certificates</h2>
+            <div class="certs-grid">
+
+                <a class="cert-item" target="_blank"
+                    href="https://www.hackerrank.com/certificates/14d9b108b379">
+                    <div class="badge-icon"><i class="fas fa-certificate"></i></div>
+                    <div class="info">
+                        <div class="cert-name">SQL (Advanced)</div>
+                        <!-- TODO: 补上获取年份 -->
+                        <div class="cert-issuer">HackerRank</div>
+                    </div>
+                </a>
+
+                <a class="cert-item" target="_blank"
+                    href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=5BCE984C14385B46226E0D03873400E1D00A221D48433901565115563B4F6C68">
+                    <div class="badge-icon"><i class="fas fa-certificate"></i></div>
+                    <div class="info">
+                        <!-- TODO: 换成证书全称，例如 Oracle Database SQL Certified Associate -->
+                        <div class="cert-name">Oracle SQL Certification</div>
+                        <div class="cert-issuer">Oracle</div>
+                    </div>
+                </a>
+
+                <a class="cert-item" target="_blank"
+                    href="https://learn.microsoft.com/en-us/users/shu-3932/credentials/46e1c090c9f85286?ref=https%3A%2F%2Fwww.linkedin.com%2F">
+                    <div class="badge-icon"><i class="fas fa-certificate"></i></div>
+                    <div class="info">
+                        <!-- TODO: 换成证书全称，例如 PL-300: Power BI Data Analyst Associate -->
+                        <div class="cert-name">Power BI Certification</div>
+                        <div class="cert-issuer">Microsoft</div>
+                    </div>
+                </a>
+
+                <a class="cert-item" target="_blank"
+                    href="https://www.datacamp.com/completed/statement-of-accomplishment/track/d88a52fd2d2f2e22ce17788fb6b2dc67debdee6c">
+                    <div class="badge-icon"><i class="fas fa-award"></i></div>
+                    <div class="info">
+                        <div class="cert-name">Data Manipulation with Python</div>
+                        <div class="cert-issuer">DataCamp<span class="sep">·</span>Track</div>
+                    </div>
+                </a>
+
+                <a class="cert-item" target="_blank"
+                    href="https://www.datacamp.com/completed/statement-of-accomplishment/track/85931eff6bb1e6cad44f422b2dfde726e8364779">
+                    <div class="badge-icon"><i class="fas fa-award"></i></div>
+                    <div class="info">
+                        <div class="cert-name">Power BI Fundamentals</div>
+                        <div class="cert-issuer">DataCamp<span class="sep">·</span>Track</div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+</section>
