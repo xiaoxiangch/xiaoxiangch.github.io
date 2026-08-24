@@ -15,7 +15,7 @@ This repository contains the source code for my personal portfolio website:
 - **About Section** – Short introduction and background
 - **Projects Section** – Selected projects with description and links
 - **Skills Section** – Technical skills with supporting links
-- **Contact Section** – Social links (Gmail, LinkedIn, Github, Medium)
+- **Contact Section** – Social links (Gmail, LinkedIn, Github)
 
 ## 🛠️ Built With
 - HTML5, CSS3
