@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steel Plate Fault Classification | Project Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        body {
+            padding-top: 56px;
+            background-color: #f8f9fa;
+            color: #333;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .navbar {
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-detail-container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 50px;
+            max-width: 900px;
+        }
+
+        h1.project-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .part-label {
+            text-align: center;
+            color: #6c757d;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            border-left: 5px solid #343a40;
+            padding-left: 15px;
+            margin-top: 30px;
+            margin-bottom: 14px;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        p {
+            line-height: 1.55;
+            margin-bottom: 12px;
+        }
+
+        ul,
+        ol {
+            margin-bottom: 14px;
+        }
+
+        /* offset anchors so headings clear the fixed nav + toc bar */
+        h3[id],
+        div[id],
+        section[id] {
+            scroll-margin-top: 120px;
+        }
+
+        .tech-tag {
+            margin-right: 5px;
+            margin-bottom: 10px;
+            padding: 8px 15px;
+            font-size: 0.9rem;
+        }
+
+        .btn-back {
+            transition: all 0.3s;
+        }
+
+        .btn-back:hover {
+            transform: translateX(-5px);
+        }
+
+        .lead-text {
+            font-size: 1.1rem;
+            line-height: 1.55;
+            color: #2c3e50;
+            font-weight: 400;
+            margin-top: 12px;
+        }
+
+        /* ── Sticky section nav ───────────────────────────── */
+        .toc-bar {
+            position: sticky;
+            top: 56px;
+            z-index: 1020;
+            background: rgba(255, 255, 255, 0.97);
+            border-bottom: 1px solid #e3e6ea;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+            padding: 8px 0;
+            margin-bottom: 25px;
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .toc-bar .toc-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .toc-bar a {
+            display: inline-block;
+            padding: 5px 12px;
+            margin-right: 4px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #495057;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .toc-bar a:hover {
+            background: #343a40;
+            color: #fff;
+        }
+
+        .toc-bar a.active {
+            background: #343a40;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .toc-bar .toc-sep {
+            display: inline-block;
+            width: 1px;
+            height: 18px;
+            background: #ced4da;
+            margin: 0 8px;
+            vertical-align: middle;
+        }
+
+        .toc-bar .toc-part {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            color: #adb5bd;
+            text-transform: uppercase;
+            margin-right: 4px;
+        }
+
+        /* ── Wide screens: TOC becomes a fixed left sidebar ─────────── */
+        @media (min-width: 992px) {
+            body {
+                padding-left: 220px;
+            }
+
+            .toc-bar {
+                position: fixed;
+                top: 56px;
+                left: 0;
+                bottom: 0;
+                width: 220px;
+                margin-bottom: 0;
+                padding: 20px 0;
+                overflow-x: hidden;
+                overflow-y: auto;
+                white-space: normal;
+                border-bottom: none;
+                border-right: 1px solid #e3e6ea;
+                box-shadow: 1px 0 4px rgba(0, 0, 0, 0.04);
+            }
+
+            .toc-bar .toc-inner {
+                max-width: none;
+                margin: 0;
+                padding: 0 14px;
+            }
+
+            .toc-bar a {
+                display: block;
+                margin: 0 0 2px;
+                padding: 7px 12px;
+                border-radius: 5px;
+                font-size: 0.88rem;
+            }
+
+            .toc-bar .toc-sep {
+                display: block;
+                width: auto;
+                height: 1px;
+                margin: 14px 12px 10px;
+            }
+
+            .toc-bar .toc-part {
+                display: block;
+                margin: 0 0 6px;
+                padding-left: 12px;
+            }
+
+            /* no sticky bar overhead any more — anchors only clear the navbar */
+            h3[id],
+            div[id],
+            section[id],
+            .finding-title,
+            .part-divider {
+                scroll-margin-top: 76px;
+            }
+        }
+
+        /* ── KPI cards ────────────────────────────────────── */
+        .kpi-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 25px 0 10px;
+        }
+
+        .kpi-card {
+            flex: 1;
+            min-width: 150px;
+            background: #f0f4f8;
+            border-radius: 8px;
+            border-top: 4px solid #343a40;
+            padding: 18px 15px;
+            text-align: center;
+        }
+
+        .kpi-card .kpi-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #2c3e50;
+            line-height: 1.2;
+        }
+
+        .kpi-card .kpi-label {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-top: 6px;
+        }
+
+        .kpi-card.danger {
+            border-top-color: #c0392b;
+        }
+
+        .kpi-card.danger .kpi-value {
+            color: #c0392b;
+        }
+
+        .kpi-card.good {
+            border-top-color: #3c8d5b;
+        }
+
+        .kpi-card.good .kpi-value {
+            color: #3c8d5b;
+        }
+
+        /* ── Findings ─────────────────────────────────────── */
+        .finding-title {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-top: 26px;
+            margin-bottom: 8px;
+            scroll-margin-top: 120px;
+        }
+
+        .finding-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            flex-shrink: 0;
+            background: #343a40;
+            color: #fff;
+            border-radius: 50%;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .finding-body {
+            line-height: 1.55;
+            color: #3a3f44;
+        }
+
+        ul.finding-body {
+            padding-left: 22px;
+            line-height: 1.55;
+        }
+
+        ul.finding-body li {
+            margin-bottom: 5px;
+        }
+
+        /* ── Figures ──────────────────────────────────────── */
+        .chart-figure {
+            text-align: center;
+            margin: 14px 0;
+        }
+
+        .chart-figure img {
+            width: 100%;
+            display: block;
+            margin: 0 auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .chart-figure img:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.15);
+        }
+
+        .chart-figure.narrow img {
+            max-width: 620px;
+        }
+
+        .chart-caption {
+            margin-top: 7px;
+            font-size: 0.85em;
+            line-height: 1.4;
+            color: #666;
+            font-style: italic;
+        }
+
+        .chart-pair {
+            display: flex;
+            gap: 22px;
+            margin: 14px 0;
+            flex-wrap: wrap;
+        }
+
+        .chart-pair .chart-figure {
+            flex: 1;
+            min-width: 300px;
+            margin: 0;
+        }
+
+        /* three figures in one row */
+        .chart-trio {
+            display: flex;
+            gap: 16px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .chart-trio .chart-figure {
+            flex: 1 1 0;
+            min-width: 210px;
+            margin: 0;
+        }
+
+        /* equal-height variant: figure and table match heights */
+        .chart-pair.pair-equal {
+            align-items: stretch;
+        }
+
+        /* both columns exactly half the row */
+        .chart-pair.pair-equal>* {
+            display: flex;
+            flex-direction: column;
+            flex: 1 1 0;
+            min-width: 280px;
+        }
+
+        .chart-pair.pair-equal .chart-figure img {
+            width: 100%;
+            height: auto;
+        }
+
+        .chart-pair.pair-equal .table-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            border: none;
+        }
+
+        .chart-pair.pair-equal .data-table {
+            border: 1px solid #ddd;
+        }
+
+        /* ── Collapsible detail blocks ────────────────────── */
+        details.more {
+            border: 1px solid #e3e6ea;
+            border-radius: 6px;
+            background: #fcfdfe;
+            margin: 18px 0;
+        }
+
+        details.more>summary {
+            cursor: pointer;
+            list-style: none;
+            padding: 11px 18px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #495057;
+            outline: none;
+            user-select: none;
+        }
+
+        details.more>summary::-webkit-details-marker {
+            display: none;
+        }
+
+        details.more>summary::before {
+            content: "\f105";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            display: inline-block;
+            width: 14px;
+            margin-right: 9px;
+            color: #868e96;
+            transition: transform 0.2s;
+        }
+
+        details.more[open]>summary::before {
+            transform: rotate(90deg);
+        }
+
+        details.more[open]>summary {
+            border-bottom: 1px solid #e3e6ea;
+        }
+
+        details.more .details-body {
+            padding: 16px 18px 4px;
+        }
+
+        details.more .details-body>*:first-child {
+            margin-top: 0;
+        }
+
+        details.more .table-container {
+            width: 100%;
+            margin-top: 0;
+        }
+
+        /* section-level collapsible: summary styled like an h3 */
+        details.more.section {
+            border: none;
+            background: transparent;
+            margin: 40px 0 20px;
+        }
+
+        details.more.section>summary {
+            border-left: 5px solid #343a40;
+            border-radius: 0;
+            padding: 2px 0 2px 15px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #212529;
+        }
+
+        details.more.section[open]>summary {
+            border-bottom: none;
+            margin-bottom: 8px;
+        }
+
+        details.more.section>summary::before {
+            font-size: 1rem;
+            vertical-align: middle;
+        }
+
+        details.more.section .details-body {
+            padding: 0;
+        }
+
+        /* ── Callout / note ───────────────────────────────── */
+        .note-box {
+            background: #fff8e6;
+            border-left: 4px solid #f0ad4e;
+            border-radius: 6px;
+            padding: 12px 18px;
+            margin: 14px 0;
+            font-size: 0.93rem;
+            line-height: 1.5;
+            color: #6b5a2e;
+        }
+
+        .insight-box {
+            background: #eef6ef;
+            border-left: 4px solid #3c8d5b;
+            border-radius: 6px;
+            padding: 12px 18px;
+            margin: 14px 0;
+            font-size: 0.93rem;
+            line-height: 1.5;
+            color: #2f5d43;
+        }
+
+        .takeaway-box {
+            background: #f0f4f8;
+            border-left: 5px solid #343a40;
+            border-radius: 6px;
+            padding: 20px 24px;
+            margin-top: 30px;
+        }
+
+        /* ── Data table ───────────────────────────────────── */
+        .table-container {
+            max-height: 320px;
+            overflow-y: auto;
+            overflow-x: auto;
+            margin: 20px auto;
+            width: 95%;
+            border: 1px solid #ddd;
+        }
+
+        .table-container.tall {
+            max-height: 420px;
+        }
+
+        .table-container.auto {
+            max-height: none;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 0.93rem;
+        }
+
+        .data-table thead th {
+            position: sticky;
+            top: 0;
+            background: #f5f5f5;
+            z-index: 1;
+        }
+
+        .data-table th,
+        .data-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        .data-table td.left {
+            text-align: left;
+        }
+
+        .data-table td.num {
+            font-variant-numeric: tabular-nums;
+        }
+
+        .data-table td.dim,
+        .data-table .dim {
+            color: #999;
+        }
+
+        /* taller rows, for tables sitting beside a figure */
+        .data-table.roomy th,
+        .data-table.roomy td {
+            padding: 16px 10px;
+        }
+
+        .data-table tbody tr.best-row {
+            background: #eef6ef;
+        }
+
+        .data-table tbody tr.best-row td {
+            font-weight: 600;
+        }
+
+        /* heat cells */
+        .r5 {
+            background: #b2182b;
+            color: #fff;
+        }
+
+        .r4 {
+            background: #ef6548;
+            color: #fff;
+        }
+
+        .r3 {
+            background: #fc9272;
+        }
+
+        .r2 {
+            background: #fcbba1;
+        }
+
+        .r1 {
+            background: #fee0d2;
+        }
+
+        .r0 {
+            background: #f7f7f7;
+        }
+
+        /* confusion-matrix cells */
+        .cm-hit {
+            background: #eef6ef;
+            color: #2f5d43;
+            font-weight: 600;
+        }
+
+        .cm-miss {
+            background: #fdecea;
+            color: #a03228;
+            font-weight: 600;
+        }
+
+        .cm-waste {
+            background: #fff8e6;
+            color: #6b5a2e;
+        }
+
+        /* ── Part divider ─────────────────────────────────── */
+        .part-divider {
+            border-top: 3px solid #343a40;
+            margin: 45px 0 0;
+            padding-top: 26px;
+            scroll-margin-top: 120px;
+        }
+
+        .part-divider h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 6px;
+            color: #2c3e50;
+        }
+
+        .pipeline-list {
+            counter-reset: step;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .pipeline-list li {
+            position: relative;
+            padding-left: 45px;
+            margin-bottom: 14px;
+            line-height: 1.7;
+        }
+
+        .pipeline-list li::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 1px;
+            width: 30px;
+            height: 30px;
+            background: #f0f4f8;
+            border: 2px solid #343a40;
+            color: #2c3e50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .project-detail-container {
+                padding: 25px 18px;
+            }
+
+            .chart-pair {
+                gap: 15px;
+            }
+
+            h1.project-title {
+                font-size: 1.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../../index.html#home">Portfolio</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="../../index.html#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../index.html#projects">Projects</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ── Sticky section nav ────────────────────────────────── -->
+    <div class="toc-bar">
+        <div class="toc-inner">
+            <a href="#overview">Overview</a>
+            <a href="#data">The Data</a>
+            <span class="toc-sep"></span>
+            <span class="toc-part">Part 1 · EDA</span>
+            <a href="#target">Target Overview</a>
+            <a href="#univariate">Univariate</a>
+            <a href="#bivariate">Bivariate</a>
+            <a href="#correlation">Correlation</a>
+            <a href="#p1-takeaways">Takeaways</a>
+            <span class="toc-sep"></span>
+            <span class="toc-part">Part 2 · Model</span>
+            <a href="#approach">Pipeline</a>
+            <a href="#benchmark">Benchmark</a>
+            <a href="#perclass">Per-Class</a>
+            <a href="#errors">Error Analysis</a>
+            <a href="#reliance">Feature Reliance</a>
+            <a href="#p2-takeaways">Conclusion</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-10 mx-auto project-detail-container">
+
+            <h1 class="project-title">Steel Plate Fault Classification</h1>
+            <p class="part-label">Part 1 — Exploratory Data Analysis &nbsp;·&nbsp; Part 2 — Multiclass Modelling</p>
+
+            <!-- ── Overview ──────────────────────────────────────────── -->
+            <h3 id="overview"><i class="fas fa-info-circle"></i> Overview</h3>
+            <p class="lead-text">
+                A dataset of steel plates' faults, provided by Semeion, Research Center of Sciences of
+                Communication, classified into seven different types. The goal it was
+                built for is automatic pattern recognition — training a model to assign the fault type from production
+                attributes alone.
+            </p>
+
+            <div class="kpi-row">
+                <div class="kpi-card">
+                    <div class="kpi-value">1,941</div>
+                    <div class="kpi-label">fault records &times; 27 features</div>
+                </div>
+                <div class="kpi-card danger">
+                    <div class="kpi-value">12 : 1</div>
+                    <div class="kpi-label">largest-to-smallest class</div>
+                </div>
+                <div class="kpi-card good">
+                    <div class="kpi-value">0.8267</div>
+                    <div class="kpi-label">test macro-F1 (LightGBM)</div>
+                </div>
+            </div>
+
+            <!-- ── The Data ──────────────────────────────────────────── -->
+            <h3 id="data"><i class="fas fa-table"></i> The Data</h3>
+            <p>
+                The Semeion / UCI Steel Plates Faults set: <strong>1,941 rows &times; 34 columns</strong> — one row per
+                detected defect, 27 predictors and <em>seven</em> one-hot target columns. No missing values anywhere.
+            </p>
+            <p class="mb-2">The 27 predictors fall into four groups:</p>
+            <div class="table-container auto">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Group</th>
+                            <th>#</th>
+                            <th>Columns</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Position</td>
+                            <td class="num">4</td>
+                            <td class="left">X_Minimum, X_Maximum, Y_Minimum, Y_Maximum</td>
+                        </tr>
+                        <tr>
+                            <td>Size &amp; shape</td>
+                            <td class="num">15</td>
+                            <td class="left">Pixels_Areas, X_Perimeter, Y_Perimeter, LogOfAreas, Log_X_Index,
+                                Log_Y_Index, SigmoidOfAreas, Square_Index, Empty_Index, Edges_Index, Edges_X_Index,
+                                Edges_Y_Index, Outside_X_Index, Outside_Global_Index, Orientation_Index</td>
+                        </tr>
+                        <tr>
+                            <td>Luminosity</td>
+                            <td class="num">4</td>
+                            <td class="left">Sum_of_Luminosity, Minimum_of_Luminosity, Maximum_of_Luminosity,
+                                Luminosity_Index</td>
+                        </tr>
+                        <tr>
+                            <td>Process</td>
+                            <td class="num">4</td>
+                            <td class="left">Length_of_Conveyer, Steel_Plate_Thickness, TypeOfSteel_A300 /
+                                TypeOfSteel_A400</td>
+                        </tr>
+                        <tr>
+                            <td>Target</td>
+                            <td class="num">7</td>
+                            <td class="left">Pastry, Z_Scratch, K_Scatch, Stains, Dirtiness, Bumps, Other_Faults</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ══════════════════════════════════════════════════════════ -->
+            <!-- ══                     P A R T   1                      ══ -->
+            <!-- ══════════════════════════════════════════════════════════ -->
+            <div class="part-divider" id="part1">
+                <h2>Part 1 — Exploratory Data Analysis</h2>
+                <p class="part-label">Target → Univariate → Bivariate → Correlation</p>
+            </div>
+
+            <!-- ── 0. Target overview ────────────────────────────────── -->
+            <h3 id="target"><i class="fas fa-bullseye"></i> Target Overview</h3>
+
+            <figure class="chart-figure">
+                <img src="Steel_Plates_Faults/1_target_overview.png"
+                    alt="Count of records per fault type with counts and percentage labels">
+                <figcaption class="chart-caption">The seven fault types, counted and as a share of all 1,941 defects
+                </figcaption>
+            </figure>
+
+            <div class="table-container auto">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Fault type</th>
+                            <th>Records</th>
+                            <th>Share</th>
+                            <th>Train rows (80%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="left">Other_Faults</td>
+                            <td class="num">673</td>
+                            <td class="num r5">34.7%</td>
+                            <td class="num">538</td>
+                        </tr>
+                        <tr>
+                            <td class="left">Bumps</td>
+                            <td class="num">402</td>
+                            <td class="num r3">20.7%</td>
+                            <td class="num">321</td>
+                        </tr>
+                        <tr>
+                            <td class="left">K_Scatch</td>
+                            <td class="num">391</td>
+                            <td class="num r3">20.1%</td>
+                            <td class="num">313</td>
+                        </tr>
+                        <tr>
+                            <td class="left">Z_Scratch</td>
+                            <td class="num">190</td>
+                            <td class="num r2">9.8%</td>
+                            <td class="num">152</td>
+                        </tr>
+                        <tr>
+                            <td class="left">Pastry</td>
+                            <td class="num">158</td>
+                            <td class="num r1">8.1%</td>
+                            <td class="num">126</td>
+                        </tr>
+                        <tr>
+                            <td class="left">Stains</td>
+                            <td class="num">72</td>
+                            <td class="num r0">3.7%</td>
+                            <td class="num">58</td>
+                        </tr>
+                        <tr>
+                            <td class="left">Dirtiness</td>
+                            <td class="num">55</td>
+                            <td class="num r0">2.8%</td>
+                            <td class="num">44</td>
+                        </tr>
+                        <tr>
+                            <td class="left"><strong>Total</strong></td>
+                            <td class="num"><strong>1,941</strong></td>
+                            <td class="num">100%</td>
+                            <td class="num"><strong>1,552</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="finding-body">
+                The classes are imbalanced, <strong>34.7% vs 2.8%</strong> — so every search in Part 2 optimises
+                macro-F1, which weights all seven classes equally.
+            </p>
+
+            <!-- ── 1. Univariate ─────────────────────────────────────── -->
+            <h3 id="univariate"><i class="fas fa-chart-bar"></i> 1 · Univariate Analysis</h3>
+            <p>
+                One column at a time — the 24 continuous columns as distribution plus boxplot with the skew printed on
+                each panel, the three low-cardinality ones as bar charts.
+            </p>
+
+            <figure class="chart-figure">
+                <img src="Steel_Plates_Faults/2_univariate_numerical.png"
+                    alt="Histogram and KDE of all 24 continuous features, annotated with skew">
+                <figcaption class="chart-caption">All 24 continuous features — histogram + KDE, skew in each title
+                </figcaption>
+            </figure>
+
+            <figure class="chart-figure">
+                <img src="Steel_Plates_Faults/2_univariate_numerical_boxplot.png"
+                    alt="Boxplot of all 24 continuous features, annotated with skew">
+                <figcaption class="chart-caption">The same 24 features as boxplots — the tails the histograms compress
+                    into a single bar</figcaption>
+            </figure>
+
+            <figure class="chart-figure">
+                <img src="Steel_Plates_Faults/3_univariate_categorical.png"
+                    alt="Bar charts of TypeOfSteel_A400, TypeOfSteel_A300 and Outside_Global_Index">
+                <figcaption class="chart-caption">The three low-cardinality columns — count and share per bar
+                </figcaption>
+            </figure>
+
+            <ul class="finding-body">
+                <li><strong>Four features are extremely right-skewed.</strong> Y_Perimeter 39.3,
+                    X_Perimeter 21.5, Pixels_Areas 14.1, Sum_of_Luminosity
+                    7.7 — each with 180–400 IQR outliers, roughly 10–20% of all rows.
+                </li>
+                <li><strong>Those outliers are signal, not error.</strong> A defect covering 152,655 pixels is a real
+                    extreme, not a mis-measurement, so nothing was clipped or dropped. We need to do
+                    log transformation to the linear models, while trees are invariant to monotone transforms.
+                </li>
+                <li><strong>Scales differ by seven orders of magnitude</strong> — Orientation_Index lives
+                    in [−0.99, 0.99] while Sum_of_Luminosity reaches 1.16&times;10<sup>7</sup>. Anything
+                    distance-based has to be standardised first.</li>
+                <li><strong>TypeOfSteel_A300 and TypeOfSteel_A400 are mirror images</strong> — 40% / 60% of the rows,
+                    and one is always 1 minus the other, so A400 was dropped as pure redundancy.
+                    Outside_Global_Index takes only three values (0, 0.5, 1) — a flag, not a
+                    measurement.
+                </li>
+            </ul>
+
+            <!-- ── 2. Bivariate ──────────────────────────────────────── -->
+            <h3 id="bivariate"><i class="fas fa-balance-scale"></i> 2 · Bivariate Analysis</h3>
+            <p>
+                Each feature against the fault label — the continuous ones as per-class densities and boxplots, the
+                categorical ones first as raw counts, then as <em>lift</em> against each class's own prevalence.
+            </p>
+
+            <div class="finding-title">Numerical Analysis</div>
+
+            <figure class="chart-figure">
+                <img src="Steel_Plates_Faults/4_bivariate_numerical.png"
+                    alt="Kernel density of every continuous feature split by fault type">
+                <figcaption class="chart-caption">Per-class densities, each normalised separately so the 55-row class is
+                    still visible; heavy-tailed axes on a log scale</figcaption>
+            </figure>
+
+            <figure class="chart-figure">
+                <img src="Steel_Plates_Faults/4_bivariate_numerical_box.png"
+                    alt="Boxplot of every continuous feature grouped by fault type">
+                <figcaption class="chart-caption">The same split as boxplots — medians and spread per fault type,
+                    symlog where skew &gt; 2</figcaption>
+            </figure>
+
+            <ul class="finding-body">
+                <li><strong>K_Scatch and Stains separate cleanly, in opposite directions</strong> — K_Scatch sits at the
+                    top of <code>LogOfAreas</code> and <code>Pixels_Areas</code>, Stains at the bottom, and their
+                    densities barely overlap the other five classes on either.
+                </li>
+                <li><strong>Pastry, Bumps and Other_Faults sit on top of each other</strong> on essentially every
+                    feature. This overlap, visible here in Part 1, is exactly the ceiling Part 2 runs into.</li>
+                <li><strong>Steel_Plate_Thickness is banded, not continuous</strong> — most records sit at 40 or
+                    70–80. It is a process parameter rather than a defect measurement, but the fault types are spread
+                    differently across those bands, so it still carries class information.</li>
+            </ul>
+
+            <div class="finding-title">Categorical Analysis</div>
+
+            <figure class="chart-figure">
+                <img src="Steel_Plates_Faults/5_bivariate_categorical.png"
+                    alt="Fault-type counts and lift by TypeOfSteel_A300 and by Outside_Global_Index">
+                <figcaption class="chart-caption">Top: fault counts per level — shows which cells are too thin to draw
+                    conclusions from. Bottom: the same split as <em>lift</em>, each level's fault rate divided by that
+                    fault's overall rate, so 1.0 means the level makes no difference.</figcaption>
+            </figure>
+
+            <p class="mb-2">The steel type is close to deterministic for three of the seven faults — the share of each
+                fault falling on each steel type:</p>
+            <div class="table-container auto">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Fault type</th>
+                            <th>on A400</th>
+                            <th>on A300</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="left">K_Scatch</td>
+                            <td class="num r5">99.7%</td>
+                            <td class="num r0">0.3%</td>
+                        </tr>
+                        <tr>
+                            <td class="left">Stains</td>
+                            <td class="num r5">98.6%</td>
+                            <td class="num r0">1.4%</td>
+                        </tr>
+                        <tr>
+                            <td class="left">Dirtiness</td>
+                            <td class="num r4">83.6%</td>
+                            <td class="num r1">16.4%</td>
+                        </tr>
+                        <tr>
+                            <td class="left">Pastry</td>
+                            <td class="num r3">69.0%</td>
+                            <td class="num r2">31.0%</td>
+                        </tr>
+                        <tr>
+                            <td class="left">Other_Faults</td>
+                            <td class="num r2">60.5%</td>
+                            <td class="num r2">39.5%</td>
+                        </tr>
+                        <tr>
+                            <td class="left">Bumps</td>
+                            <td class="num r1">30.6%</td>
+                            <td class="num r3">69.4%</td>
+                        </tr>
+                        <tr>
+                            <td class="left">Z_Scratch</td>
+                            <td class="num r0">9.5%</td>
+                            <td class="num r5">90.5%</td>
+                        </tr>
+                        <tr>
+                            <td class="left dim">All records</td>
+                            <td class="num dim">60.0%</td>
+                            <td class="num dim">40.0%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <ul class="finding-body">
+                <li><strong>Z_Scratch sits mostly on A300</strong> — <strong>90.5%</strong> of it, against a 40.0%
+                    baseline.</li>
+                <li><strong>K_Scatch and Stains sit almost entirely on A400</strong> — <strong>99.7%</strong> and
+                    <strong>98.6%</strong>, against a 60.0% baseline.
+                </li>
+            </ul>
+
+            <!-- ── 3. Correlation ──────────────────────────────────── -->
+            <h3 id="correlation"><i class="fas fa-ruler-horizontal"></i> 3 · Feature Correlation</h3>
+            <p>
+                Pearson correlation between every pair of the 26 features.
+            </p>
+
+            <figure class="chart-figure">
+                <img src="Steel_Plates_Faults/6_pearson_features.png"
+                    alt="Lower-triangular Pearson correlation heatmap of all features">
+                <figcaption class="chart-caption">Pearson correlation between features — upper triangle masked, the
+                    matrix is symmetric</figcaption>
+            </figure>
+
+            <div class="table-container auto">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Feature A</th>
+                            <th>Feature B</th>
+                            <th>Pearson r</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="left">Y_Minimum</td>
+                            <td class="left">Y_Maximum</td>
+                            <td class="num r5">1.000</td>
+                        </tr>
+                        <tr>
+                            <td class="left">X_Minimum</td>
+                            <td class="left">X_Maximum</td>
+                            <td class="num r5">0.988</td>
+                        </tr>
+                        <tr>
+                            <td class="left">Pixels_Areas</td>
+                            <td class="left">Sum_of_Luminosity</td>
+                            <td class="num r4">0.979</td>
+                        </tr>
+                        <tr>
+                            <td class="left">Pixels_Areas</td>
+                            <td class="left">X_Perimeter</td>
+                            <td class="num r4">0.967</td>
+                        </tr>
+                        <tr>
+                            <td class="left">X_Perimeter</td>
+                            <td class="left">Sum_of_Luminosity</td>
+                            <td class="num r3">0.913</td>
+                        </tr>
+                        <tr>
+                            <td class="left">X_Perimeter</td>
+                            <td class="left">Y_Perimeter</td>
+                            <td class="num r3">0.912</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <ul class="finding-body">
+                <li><strong>Six pairs exceed |r| = 0.9</strong>, and they are all the same two clusters: the bounding
+                    box (Y_Minimum / Y_Maximum at <strong>1.000</strong>, X_Minimum / X_Maximum at 0.988) and the size
+                    cluster, where area, perimeter and total luminosity all measure how big the defect is.</li>
+
+                <li><strong>The duplicates were kept.</strong> Collinearity destabilises linear coefficients but does
+                    not hurt a tree ensemble's predictions — it only splits their importance across the duplicated
+                    columns. So the fix was the log transform plus standardisation for the linear model, not feature
+                    deletion; the only column dropped was <code>TypeOfSteel_A400</code>, an exact complement of A300.
+                </li>
+            </ul>
+
+            <figure class="chart-figure">
+                <img src="Steel_Plates_Faults/7_mean_features_vs_fault.png"
+                    alt="Heatmap of the mean standardised value of every feature per fault type">
+                <figcaption class="chart-caption">Mean z-score of every continuous feature per fault type — the
+                    numerical fingerprint of each class</figcaption>
+            </figure>
+
+            <ul class="finding-body">
+                <li><strong>K_Scatch and Stains are opposite extremes on size</strong> — largest
+                    (<code>Log_X_Index</code> <strong>+1.5</strong>) versus smallest and brightest
+                    (<code>LogOfAreas</code> <strong>−1.6</strong>, <code>Luminosity_Index</code> +0.79).</li>
+                <li><strong>Dirtiness is a shape signature</strong> — <code>Square_Index</code> <strong>−1.3</strong>,
+                    <code>Orientation_Index</code> +1.0, with size and luminosity mild.
+                </li>
+                <li><strong>Bumps and Other_Faults are flat across the entire row</strong> — no z-score reaches 0.6.
+                    Other_Faults has no fingerprint because it is not one defect, but the label for everything that is
+                    not the other six.</li>
+            </ul>
+
+            <!-- ── Key Takeaways ─────────────────────────────────────── -->
+            <div class="takeaway-box" id="p1-takeaways">
+                <h4 style="margin-top:0; border:none; padding:0;">
+                    <i class="fas fa-lightbulb"></i> &nbsp;Part 1 Key Takeaways
+                </h4>
+                <p style="margin-bottom:10px;">
+                    Which classes the features can actually tell apart:
+                </p>
+                <ul style="margin-bottom:0; line-height:1.6;">
+                    <li><strong>Four classes are close to solved before any model runs.</strong> K_Scatch, Stains and
+                        Dirtiness each have a distinct signature in the z-score heatmap; Z_Scratch has none, and is
+                        separated by the steel type instead.</li>
+                    <li><strong>Three classes overlap almost completely.</strong> Pastry, Bumps and Other_Faults sit in
+                        the same range on nearly every feature.</li>
+                    <li><strong>The 12:1 imbalance decides the metric</strong> — macro-F1, which weights the 55-row
+                        class equally with the 673-row one.</li>
+                    <li><strong>Structural redundancy, cleaned once.</strong> A400 = 1 − A300 exactly.
+                    </li>
+                    <li><strong>Skew is data, not noise.</strong> The four features with skew 7.7–39.3 keep their
+                        outliers.</li>
+                </ul>
+            </div>
+
+            <!-- ══════════════════════════════════════════════════════════ -->
+            <!-- ══                     P A R T   2                      ══ -->
+            <!-- ══════════════════════════════════════════════════════════ -->
+            <div class="part-divider" id="part2">
+                <h2>Part 2 — Multiclass Modelling</h2>
+                <p class="part-label">From "what the classes look like" to "which type is this fault"</p>
+            </div>
+
+            <h3 id="approach"><i class="fas fa-project-diagram"></i> Model Pipeline</h3>
+            <p class="lead-text">
+                Part 1 asked what each of the seven fault types looks like. Part 2 asks a model to do the
+                classification.
+            </p>
+
+
+            <ol class="pipeline-list">
+                <li><strong>Split first, resample second.</strong> A stratified 80/20 split into <strong>1,552 train /
+                        389 test</strong> before anything else — SMOTE applied earlier would leak synthetic copies of
+                    test points into training.</li>
+                <li><strong>Log, then scale, then SMOTE — linear model only.</strong> <code>log1p</code> on the four
+                    heavy-tailed columns (skew <strong>8.9–36.1</strong> → <strong>0.72–0.88</strong>), then
+                    <code>StandardScaler</code>, then SMOTE, inside the CV pipeline. The trees take the raw columns:
+                    monotone transforms and scaling change nothing for them.
+                </li>
+                <li><strong>Class weights handle the imbalance.</strong> <code>class_weight='balanced'</code> for LR,
+                    RF and LightGBM; XGBoost has no such parameter, so a per-fold <code>compute_sample_weight</code>
+                    does the same job.
+                </li>
+                <li><strong>Hyperparameter optimization.</strong> Grid search, randomised search and an Optuna study —
+                    all on the same 5-fold CV, each result compared to its own baseline <em>fold by fold</em>.
+                </li>
+            </ol>
+
+
+            <!-- ── Benchmark ─────────────────────────────────────────── -->
+            <h3 id="benchmark"><i class="fas fa-trophy"></i> Model Benchmark</h3>
+            <p>
+                Best tuned configuration per family, in 5-fold CV on the 1,552 training rows and on the untouched
+                389-record test set. Precision, recall and F1 are macro averages; rows are sorted by CV macro-F1:
+            </p>
+            <div class="table-container auto">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th rowspan="2">Model</th>
+                            <th colspan="4">5-fold CV <span class="dim">(n = 1,552)</span></th>
+                            <th colspan="2">Test <span class="dim">(n = 389)</span></th>
+                            <th colspan="3">Paired vs. best</th>
+                        </tr>
+                        <tr>
+                            <th>f1</th>
+                            <th>f1 std</th>
+                            <th>bal acc</th>
+                            <th>gap</th>
+                            <th>f1</th>
+                            <th>bal acc</th>
+                            <th>d</th>
+                            <th>SE</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="best-row">
+                            <td class="left">LGBM </td>
+                            <td class="num">0.8202</td>
+                            <td class="num">0.0085</td>
+                            <td class="num">0.8174</td>
+                            <td class="num">0.1798</td>
+                            <td class="num">0.8267</td>
+                            <td class="num">0.8335</td>
+                            <td class="num">−0.0000</td>
+                            <td class="num">0.0000</td>
+                            <td class="cm-hit">best</td>
+                        </tr>
+                        <tr>
+                            <td class="left">XGB </td>
+                            <td class="num">0.8165</td>
+                            <td class="num">0.0162</td>
+                            <td class="num">0.8242</td>
+                            <td class="num">0.1752</td>
+                            <td class="num">0.8172</td>
+                            <td class="num">0.8423</td>
+                            <td class="num">−0.0037</td>
+                            <td class="num">0.0040</td>
+                            <td class="cm-waste">tie</td>
+                        </tr>
+                        <tr>
+                            <td class="left">RF </td>
+                            <td class="num">0.8103</td>
+                            <td class="num">0.0155</td>
+                            <td class="num">0.8118</td>
+                            <td class="num">0.1628</td>
+                            <td class="num">0.8093</td>
+                            <td class="num">0.8400</td>
+                            <td class="num">−0.0099</td>
+                            <td class="num">0.0039</td>
+                            <td class="cm-miss">worse</td>
+                        </tr>
+                        <tr>
+                            <td class="left">LR + SMOTE</td>
+                            <td class="num">0.6967</td>
+                            <td class="num">0.0126</td>
+                            <td class="num">0.7797</td>
+                            <td class="num">0.0247</td>
+                            <td class="num">0.6738</td>
+                            <td class="num">0.7568</td>
+                            <td class="num">−0.1235</td>
+                            <td class="num">0.0050</td>
+                            <td class="cm-miss">worse</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="chart-caption" style="text-align:left; width:95%; margin:-12px auto 20px;">
+                <code>gap</code> = train F1 − CV F1 (overfitting). <code>d</code> = fold-by-fold mean difference
+                against the best model, <code>SE</code> its standard error; <code>tie</code> means |d| ≤ 2·SE.
+            </p>
+
+            <ul class="finding-body">
+                <li><strong>The three tree ensembles are within 0.01 of each other</strong> — XGBoost's −0.0037 is
+                    inside two standard errors, a tie. Only the linear model is out of the race, 0.12
+                    macro-F1 behind.</li>
+                <li><strong>Every tree model overfits by roughly 0.18 macro-F1</strong> (train ≈ 1.00, CV ≈ 0.82), and
+                    no amount of regularisation closed it — 1,552 rows over 26 features is not enough data for the
+                    boundary between the overlapping classes.</li>
+            </ul>
+
+            <!-- ── Per-class ────────────────────────────────────────── -->
+            <h3 id="perclass"><i class="fas fa-list-ol"></i> Where the Model Is Strong, and Where It Is Not</h3>
+            <p>
+                A single macro-F1 hides everything that matters here. Out-of-fold predictions from the final LightGBM —
+                every row scored by a model that never saw it — broken out per class:
+            </p>
+            <div class="table-container auto">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>precision</th>
+                            <th>recall</th>
+                            <th>f1-score</th>
+                            <th>support</th>
+                            <th>f1 std</th>
+                            <th>pred ratio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="left">Pastry</td>
+                            <td class="num">0.638</td>
+                            <td class="num">0.643</td>
+                            <td class="num cm-miss">0.640</td>
+                            <td class="num">126</td>
+                            <td class="num">0.072</td>
+                            <td class="num">1.008</td>
+                        </tr>
+                        <tr>
+                            <td class="left">Z_Scratch</td>
+                            <td class="num">0.929</td>
+                            <td class="num">0.941</td>
+                            <td class="num cm-hit">0.935</td>
+                            <td class="num">152</td>
+                            <td class="num">0.044</td>
+                            <td class="num">1.013</td>
+                        </tr>
+                        <tr>
+                            <td class="left">K_Scatch</td>
+                            <td class="num">0.961</td>
+                            <td class="num">0.949</td>
+                            <td class="num cm-hit">0.955</td>
+                            <td class="num">313</td>
+                            <td class="num">0.027</td>
+                            <td class="num">0.987</td>
+                        </tr>
+                        <tr>
+                            <td class="left">Stains</td>
+                            <td class="num">0.931</td>
+                            <td class="num">0.931</td>
+                            <td class="num cm-hit">0.931</td>
+                            <td class="num">58</td>
+                            <td class="num">0.041</td>
+                            <td class="num">1.000</td>
+                        </tr>
+                        <tr>
+                            <td class="left">Dirtiness</td>
+                            <td class="num">0.878</td>
+                            <td class="num">0.818</td>
+                            <td class="num cm-hit">0.847</td>
+                            <td class="num">44</td>
+                            <td class="num">0.039</td>
+                            <td class="num">0.932</td>
+                        </tr>
+                        <tr>
+                            <td class="left">Bumps</td>
+                            <td class="num">0.676</td>
+                            <td class="num">0.713</td>
+                            <td class="num cm-miss">0.694</td>
+                            <td class="num">321</td>
+                            <td class="num">0.020</td>
+                            <td class="num">1.056</td>
+                        </tr>
+                        <tr>
+                            <td class="left">Other_Faults</td>
+                            <td class="num">0.746</td>
+                            <td class="num">0.727</td>
+                            <td class="num cm-waste">0.736</td>
+                            <td class="num">538</td>
+                            <td class="num">0.015</td>
+                            <td class="num">0.974</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="chart-caption" style="text-align:left; width:95%; margin:-12px auto 20px;">
+                <code>f1 std</code> = spread of the f1-score across the five folds. <code>pred ratio</code> = predicted
+                count ÷ actual count, so &gt; 1 means the class is over-predicted.
+            </p>
+
+
+
+            <!-- ── Error analysis ──────────────────────────────────── -->
+            <h3 id="errors"><i class="fas fa-search-plus"></i> Error Analysis</h3>
+            <p>
+                Which classes get mistaken for which — out-of-fold on the training rows, and on the held-out test set.
+                Each row sums to 1, so the diagonal is that class's recall:
+            </p>
+
+            <div class="chart-pair">
+                <figure class="chart-figure">
+                    <img src="Steel_Plates_Faults/9_overlap_oof.png"
+                        alt="Row-normalised out-of-fold confusion matrix of the final LightGBM on the training rows">
+                    <figcaption class="chart-caption">Out-of-fold, n = 1,552 — every row scored by a model that never
+                        saw it</figcaption>
+                </figure>
+                <figure class="chart-figure">
+                    <img src="Steel_Plates_Faults/9_overlap.png"
+                        alt="Row-normalised confusion matrix of the final LightGBM on the held-out test set">
+                    <figcaption class="chart-caption">Held-out test set, n = 389 — the same pattern on data used
+                        once</figcaption>
+                </figure>
+            </div>
+
+            <p>
+                The eight largest off-diagonal cells of each matrix — proportion sets the direction, absolute count
+                sets the priority, and a count of three or fewer <span class="dim">(greyed)</span> carries no weight at
+                all:
+            </p>
+            <div class="chart-pair">
+                <div style="flex:1 1 0; min-width:300px;">
+                    <p class="chart-caption" style="margin:0 0 6px;">Out-of-fold (n = 1,552)</p>
+                    <div class="table-container auto" style="margin:0; width:100%;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Actual</th>
+                                    <th>Predicted as</th>
+                                    <th>Share</th>
+                                    <th>n</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="left">Pastry</td>
+                                    <td class="left">Other_Faults</td>
+                                    <td class="num r4">25.4%</td>
+                                    <td class="num">32</td>
+                                </tr>
+                                <tr>
+                                    <td class="left">Bumps</td>
+                                    <td class="left">Other_Faults</td>
+                                    <td class="num r4">23.7%</td>
+                                    <td class="num">76</td>
+                                </tr>
+                                <tr>
+                                    <td class="left">Other_Faults</td>
+                                    <td class="left">Bumps</td>
+                                    <td class="num r3">17.1%</td>
+                                    <td class="num">92</td>
+                                </tr>
+                                <tr>
+                                    <td class="left">Pastry</td>
+                                    <td class="left">Bumps</td>
+                                    <td class="num r2">9.5%</td>
+                                    <td class="num">12</td>
+                                </tr>
+                                <tr>
+                                    <td class="left">Dirtiness</td>
+                                    <td class="left">Bumps</td>
+                                    <td class="num r1">6.8%</td>
+                                    <td class="num dim">3</td>
+                                </tr>
+                                <tr>
+                                    <td class="left">Dirtiness</td>
+                                    <td class="left">Other_Faults</td>
+                                    <td class="num r1">6.8%</td>
+                                    <td class="num dim">3</td>
+                                </tr>
+                                <tr>
+                                    <td class="left">Other_Faults</td>
+                                    <td class="left">Pastry</td>
+                                    <td class="num r1">5.4%</td>
+                                    <td class="num">29</td>
+                                </tr>
+                                <tr>
+                                    <td class="left">Stains</td>
+                                    <td class="left">Other_Faults</td>
+                                    <td class="num r0">5.2%</td>
+                                    <td class="num dim">3</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div style="flex:1 1 0; min-width:300px;">
+                    <p class="chart-caption" style="margin:0 0 6px;">Held-out test (n = 389)</p>
+                    <div class="table-container auto" style="margin:0; width:100%;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Actual</th>
+                                    <th>Predicted as</th>
+                                    <th>Share</th>
+                                    <th>n</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="left">Bumps</td>
+                                    <td class="left">Other_Faults</td>
+                                    <td class="num r4">23.5%</td>
+                                    <td class="num">19</td>
+                                </tr>
+                                <tr>
+                                    <td class="left">Dirtiness</td>
+                                    <td class="left">Other_Faults</td>
+                                    <td class="num r3">18.2%</td>
+                                    <td class="num dim">2</td>
+                                </tr>
+                                <tr>
+                                    <td class="left">Other_Faults</td>
+                                    <td class="left">Bumps</td>
+                                    <td class="num r3">14.1%</td>
+                                    <td class="num">19</td>
+                                </tr>
+                                <tr>
+                                    <td class="left">Pastry</td>
+                                    <td class="left">Other_Faults</td>
+                                    <td class="num r2">9.4%</td>
+                                    <td class="num dim">3</td>
+                                </tr>
+                                <tr>
+                                    <td class="left">Dirtiness</td>
+                                    <td class="left">Bumps</td>
+                                    <td class="num r2">9.1%</td>
+                                    <td class="num dim">1</td>
+                                </tr>
+                                <tr>
+                                    <td class="left">Other_Faults</td>
+                                    <td class="left">Pastry</td>
+                                    <td class="num r2">8%</td>
+                                    <td class="num">11</td>
+                                </tr>
+                                <tr>
+                                    <td class="left">Stains</td>
+                                    <td class="left">Bumps</td>
+                                    <td class="num r1">7%</td>
+                                    <td class="num dim">1</td>
+                                </tr>
+                                <tr>
+                                    <td class="left">Bumps</td>
+                                    <td class="left">Pastry</td>
+                                    <td class="num r0">5%</td>
+                                    <td class="num dim">4</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="finding-body">
+                <li><strong>One triangle produces roughly three quarters of all errors.</strong> Pastry ↔ Bumps ↔
+                    Other_Faults account for 241 of the 321 misclassified records out-of-fold; no confusion outside
+                    those three classes exceeds 3% of its row.</li>
+            </ul>
+
+            <!-- ── Feature reliance ────────────────────────────────── -->
+            <h3 id="reliance"><i class="fas fa-weight-hanging"></i> What the Model Leans On</h3>
+            <p>
+                Two views of the same model: what it uses overall, and what it uses per class.
+            </p>
+
+            <figure class="chart-figure">
+                <img src="Steel_Plates_Faults/8_feature_importance.png"
+                    alt="LightGBM feature importances, all 26 features ranked by split count">
+                <figcaption class="chart-caption">LightGBM feature importance — how often each column was chosen as a
+                    split point, summed over all trees</figcaption>
+            </figure>
+
+            <figure class="chart-figure narrow">
+                <img src="Steel_Plates_Faults/10_shap.png"
+                    alt="Heatmap of mean absolute SHAP value per feature and per fault class">
+                <figcaption class="chart-caption">Mean |SHAP| per class for the top 15 features — how much the model
+                    leans on each feature when deciding each class</figcaption>
+            </figure>
+
+            <ul class="finding-body">
+                <li><strong>Other_Faults is the flattest column in the map</strong> — its largest reliance on any
+                    feature is <strong>0.34</strong>, against <strong>1.51</strong> for K_Scatch and
+                    <strong>1.26</strong> for Z_Scratch. The model has nothing concentrated to hold on to.
+                </li>
+                <li><strong>SHAP confirms Part 1 independently.</strong> Z_Scratch leans on
+                    <code>TypeOfSteel_A300</code> (0.77), Pastry on <code>Orientation_Index</code> (0.94), Dirtiness on
+                    <code>Square_Index</code> (0.48) — the same three signatures the EDA found.
+                </li>
+                <li><strong>Split count measures opportunity, not importance.</strong> <code>Y_Minimum</code> tops the
+                    bar chart, but it takes 1,939 distinct values across 1,941 rows — nearly a row index, so it offers
+                    the most places to split; SHAP puts it mid-table. Binaries are buried the other way:
+                    <code>TypeOfSteel_A300</code> ranks near the bottom, yet SHAP shows it is Z_Scratch's single most
+                    important feature.
+                </li>
+            </ul>
+
+
+
+            <!-- ── Conclusion ──────────────────────────────────────── -->
+            <div class="takeaway-box" id="p2-takeaways">
+                <h4 style="margin-top:0; border:none; padding:0;">
+                    <i class="fas fa-flag-checkered"></i> &nbsp;Part 2 Conclusion
+                </h4>
+                <ul style="margin-bottom:0; line-height:1.6;">
+                    <li><strong>Final model: LightGBM.</strong> CV macro-F1 <strong>0.8202 ± 0.0085</strong>, test
+                        macro-F1 <strong>0.8267</strong>. XGBoost ties it statistically, Random Forest trails by 0.01,
+                        the linear model by 0.12.</li>
+                    <li><strong>Deployable today for four of the seven types.</strong> K_Scatch 0.955, Z_Scratch 0.935,
+                        Stains 0.931, Dirtiness 0.847 — together 36% of all records.</li>
+                    <li><strong>The other three need labels, not tuning.</strong> Pastry 0.640, Bumps 0.694 and
+                        Other_Faults 0.736 produce roughly three quarters of every error, and SHAP shows the model has
+                        nothing concentrated to separate them with.</li>
+                    <li><strong>Highest-value next step: split Other_Faults.</strong> Re-labelling the 673-record
+                        residual bucket into real defect types would lift the macro score further than any modelling
+                        change available here.</li>
+                </ul>
+            </div>
+
+            <div class="mt-5 text-center">
+                <a href="../../index.html#projects" class="btn btn-primary btn-lg btn-back">
+                    <i class="fas fa-arrow-left"></i> Back to Portfolio
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer style="text-align:center; padding:20px; color:#6c757d;">
+        <p>© Steel Plate Fault Classification</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- highlight the TOC entry for the section currently in view -->
+    <script>
+        (function () {
+            var links = Array.prototype.slice.call(
+                document.querySelectorAll('.toc-bar a[href^="#"]'));
+            var items = links.map(function (a) {
+                return { link: a, target: document.getElementById(a.hash.slice(1)) };
+            }).filter(function (i) { return i.target; });
+
+            if (!items.length) return;
+
+            var current = null;
+            var queued = false;
+
+            function update() {
+                queued = false;
+                var line = 100;   // a bit below the fixed navbar
+                var active = items[0];
+
+                for (var i = 0; i < items.length; i++) {
+                    if (items[i].target.getBoundingClientRect().top <= line) {
+                        active = items[i];
+                    }
+                }
+
+                // at the very bottom, the last section wins even if it never crossed the line
+                if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 2) {
+                    active = items[items.length - 1];
+                }
+
+                if (active.link === current) return;
+                if (current) current.classList.remove('active');
+                active.link.classList.add('active');
+                current = active.link;
+
+                // keep the active entry visible in the sidebar's own scroll area
+                var bar = document.querySelector('.toc-bar');
+                if (bar && bar.scrollHeight > bar.clientHeight) {
+                    var top = current.offsetTop - bar.clientHeight / 2;
+                    bar.scrollTo({ top: top, behavior: 'smooth' });
+                }
+            }
+
+            function onScroll() {
+                if (queued) return;
+                queued = true;
+                window.requestAnimationFrame(update);
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', onScroll);
+            update();
+        })();
+    </script>
+</body>
+
+</html>
